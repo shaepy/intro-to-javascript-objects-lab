@@ -382,7 +382,11 @@ game.catchPokemon = function(nameOfPokemon) {
 
 game.catchPokemon('piKachu')
 
+console.log(game.items)
+
 game.catchPokemon('Pidgey')
+
+console.log(game.items)
 
 game.catchPokemon('VULPIX')
 
