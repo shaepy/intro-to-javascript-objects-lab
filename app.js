@@ -351,13 +351,12 @@ game.catchPokemon = function(nameOfPokemon) {
 
   if (realPokemon !== undefined) {
     if (this.items[1].quantity > 0) {
+      this.items[1].quantity--
       if (this.party.length < 6) {
         this.party.push(realPokemon)
-        this.items[1].quantity--
       }
       else {
         this.collection.push(realPokemon)
-        this.items[1].quantity--
       }
     }
     else {
