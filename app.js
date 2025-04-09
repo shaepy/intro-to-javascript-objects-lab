@@ -1,4 +1,4 @@
-const pokemon = require('./data.js');
+// const pokemon = require('./data.js');
 
 const game = {
     party: [],
@@ -26,7 +26,7 @@ const game = {
 console.log('Exercise 1: ', pokemon[58].name)
 
 // Exercise 2
-// console.log(game)
+console.log(game)
 
 /*
 Exercise 3
@@ -75,11 +75,11 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-for (let i = 0; i < game.gyms.length; i++) {
-    if (game.gyms[i].difficulty < 3) {
-        game.gyms[i].completed = true;
+game.gyms.forEach(location => {
+    if (location.difficulty < 3) {
+        location.completed = true;
     }
-}
+})
 
 //console.log('Exercise 6: ', game)
 
@@ -125,9 +125,9 @@ Exercise 9
 Solve Exercise 9 here:
 */ 
 
-for (let i = 0; i < pokemon.length; i++) {
-    if (pokemon[i].starter === true) {
-        console.log(`${pokemon[i].name} is a starter pokemon.`)
+for (let monster of pokemon) {
+    if (monster.starter === true) {
+        console.log(`${monster.name} is a starter pokemon.`)
     }
 }
 
@@ -184,13 +184,14 @@ Exercise 12
 Solve Exercise 12 here:
 */
 
-for (let i = 0; i < game.gyms.length; i++) {
-    if (game.gyms[i].difficulty < 6) {
-        game.gyms[i].completed = true;
-    }
+game.gyms.forEach(location => {
+  if (location.difficulty < 6) {
+    location.completed = true;
 }
+})
 
 //console.log('Exercise 12: ', game)
+
 
 /*
 Exercise 13
@@ -218,11 +219,11 @@ Solve Exercise 13 here:
 const gymTally = {completed: 0, incomplete: 0}
 
 game.gymStatus = function() {
-    for (let i = 0; i < this.gyms.length; i++) {
-        if (this.gyms[i].completed === true) {
+    for (let location of this.gyms) {
+        if (location.completed === true) {
             gymTally.completed++
         }
-        else if (this.gyms[i].completed === false) {
+        else if (location.completed === false) {
             gymTally.incomplete++
         }
     }
@@ -230,7 +231,7 @@ game.gymStatus = function() {
 
 game.gymStatus(game.gyms)
 
-// console.log(gymTally)
+console.log(gymTally)
 
 /*
 Exercise 14
@@ -248,7 +249,8 @@ game.partyCount = function() {
     return game.party.length
 }
 
-//console.log(game.partyCount())
+console.log(game.partyCount())
+
 
 /*
 Exercise 15
@@ -258,11 +260,11 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
-for (let i = 0; i < game.gyms.length; i++) {
-    if (game.gyms[i].difficulty < 8) {
-        game.gyms[i].completed = true;
-    }
+game.gyms.forEach(location => {
+  if (location.difficulty < 8) {
+    location.completed = true;
 }
+})
 
 
 /*
@@ -271,7 +273,7 @@ Exercise 16
 Solve Exercise 16 here:
 */
 
-// console.log(game)
+console.log(game)
 
 
 /*
@@ -286,8 +288,6 @@ game.party.sort(function(a,b){
     return b.hp - a.hp
   }
 )
-
-// console.log(game.party)
 
 
 /*
@@ -388,14 +388,9 @@ game.catchPokemon = function(nameOfPokemon) {
   }
 }
 
-
 game.catchPokemon('piKachu')
 
-console.log(game)
-
 game.catchPokemon('VULPIX')
-
-console.log(game)
 
 game.catchPokemon('DratINI')
 
@@ -425,11 +420,33 @@ Dynamically construct an object with the existing `pokemon` data sorted by the d
   ],
   * etc... until there is an array for every Pokemon type!
 }
-
 Log the object when it's constructed.
 Solve Exercise 21 here:
 */
 
+// pseudo-code:
+// create a new-object
+// this new-object should have keys that hold arrays
+// each key will be named after an existing pokemon 'type' (i.e grass, fire, water...)
 
+// go through each pokemon-obj in the pokemon array,
+//     for each pokemon-obj, look at the key 'type'
+//         if the value of 'type' matches a 'type' in new-object
+//             add this pokemon obj to that array
+//         if the value of 'type' is not in new-object
+//             add it as a key in new-object 
+//             and add the obj to that array
 
+const typeCollector = {};
 
+for (let monster of pokemon) {
+  if (monster.type in typeCollector === false) {
+    typeCollector[monster.type] = [];
+    typeCollector[monster.type].push(monster)
+  }
+  else if (monster.type in typeCollector) {
+    typeCollector[monster.type].push(monster)
+  }
+}
+
+console.log(typeCollector);
