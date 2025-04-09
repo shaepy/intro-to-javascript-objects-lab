@@ -38,9 +38,6 @@ Solve Exercise 3 here:
 
 game.difficulty = 'Easy';
 
-// console.log('Exercise 3: ', game)
-
-
 /*
 Exercise 4
 1. Select a starter Pokémon from the `pokemon` array. Remember, a starter Pokémon's `starter` property is true.
@@ -51,9 +48,6 @@ Solve Exercise 4 here:
 
 game.party.push(pokemon[6])
 
-// console.log('Exercise 4: ', game)
-
-
 /*
 Exercise 5
 1. Choose three more Pokémon from the `pokemon` array and add them to your party.
@@ -63,9 +57,6 @@ Solve Exercise 5 here:
 */
 
 game.party.push(pokemon[78], pokemon[2], pokemon[37])
-
-// console.log('Exercise 5: ', game)
-
 
 /*
 Exercise 6
@@ -80,9 +71,6 @@ game.gyms.forEach(location => {
         location.completed = true;
     }
 })
-
-//console.log('Exercise 6: ', game)
-
 
 /*
 Exercise 7
@@ -99,10 +87,9 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-game.party[0] = pokemon[7]
+game.party.splice(0, 1, pokemon[7])
 
-//console.log('Exercise 7: ', game)
-
+console.log(game.party)
 
 /*
 Exercise 8
@@ -115,7 +102,6 @@ Solve Exercise 8 here:
 for (let i = 0; i < game.party.length; i++) {
     console.log(`${i + 1}: `, game.party[i].name)
 }
-
 
 /*
 Exercise 9
@@ -130,7 +116,6 @@ for (let monster of pokemon) {
         console.log(`${monster.name} is a starter pokemon.`)
     }
 }
-
 
 /*
 Exercise 10
@@ -150,8 +135,7 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[64])
 
-//console.log('Exercise 10: ', game)
-
+//console.log(game)
 
 /*
 Exercise 11
@@ -173,8 +157,7 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[22])
 
-//console.log('Exercise 11: ', game)
-
+//console.log(game)
 
 /*
 Exercise 12
@@ -190,8 +173,7 @@ game.gyms.forEach(location => {
 }
 })
 
-//console.log('Exercise 12: ', game)
-
+//console.log(game)
 
 /*
 Exercise 13
@@ -251,7 +233,6 @@ game.partyCount = function() {
 
 console.log(game.partyCount())
 
-
 /*
 Exercise 15
 1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
@@ -266,7 +247,6 @@ game.gyms.forEach(location => {
 }
 })
 
-
 /*
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
@@ -274,7 +254,6 @@ Solve Exercise 16 here:
 */
 
 console.log(game)
-
 
 /*
 Exercise 17
@@ -288,7 +267,6 @@ game.party.sort(function(a,b){
     return b.hp - a.hp
   }
 )
-
 
 /*
 Exercise 18
@@ -321,7 +299,6 @@ game.catchPokemon = function(pokemonObj) {
 }
 
 game.catchPokemon(pokemon[96])
-
 
 /*
 Exercise 19
@@ -403,7 +380,6 @@ game.catchPokemon('ocaptainmycaptain')
 game.catchPokemon('gdsgkabibakumomo')
 
 console.log(game)
-
 
 /*
 Exercise 21
