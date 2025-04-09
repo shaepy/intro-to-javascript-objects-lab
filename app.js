@@ -67,7 +67,7 @@ Solve Exercise 6 here:
 */
 
 // difficultyLevel should take in a number.
-// The function will set all locations as 'completed: true' for all levels below that number
+// This function will set all locations as completed from false to true, for all levels below that number
 const completeLevelsBelow = (difficultyLevel) => {
   game.gyms.forEach(location => {
     if (location.difficulty < difficultyLevel) {
@@ -339,27 +339,28 @@ Solve Exercise 20 here:
 */
 
 game.catchPokemon = function(nameOfPokemon) {
+  // this function checks if this name is an existing object in pokemon 
   const checkName = () => {
     for (let monster of pokemon) {
       if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        return monster;
+        return monster; // return the object if there is a match
       }
     }
   }
-  
+  // call the function and save the value to realPokemon
   const realPokemon = checkName();
-
+  // check if realPokemon is empty or not
   if (realPokemon !== undefined) {
-    if (this.items[1].quantity > 0) {
-      this.items[1].quantity--
-      if (this.party.length < 6) {
+    if (this.items[1].quantity > 0) { // if pokeballs is greater than 0
+      this.items[1].quantity-- // decrement a pokeball from items
+      if (this.party.length < 6) { // check if the party is full
         this.party.push(realPokemon)
       }
-      else {
+      else { // if so, add to collection instead
         this.collection.push(realPokemon)
       }
     }
-    else {
+    else { 
       console.log('You do not have enough pokeballs to catch this Pokemon.')
     }
   }
@@ -406,6 +407,18 @@ Dynamically construct an object with the existing `pokemon` data sorted by the d
 Log the object when it's constructed.
 Solve Exercise 21 here:
 */
+
+// pseudo-code:
+// create a new-object with keys that hold arrays
+// each key will be named after an existing pokemon 'type' (i.e grass, fire, water...)
+
+// go through each pokemon-obj in the pokemon array,
+//     for each pokemon-obj, look at the key 'type'
+//         if the value of 'type' matches a 'type' in new-object
+//             add this pokemon obj to that array
+//         if the value of 'type' is not in new-object
+//             add it as a key in new-object 
+//             add this pokemon-obj to that array
 
 const typeCollector = {};
 
