@@ -353,19 +353,19 @@ game.catchPokemon = function(nameOfPokemon) {
   if (realPokemon !== undefined) {
     if (this.items[1].quantity > 0) { // if pokeballs is greater than 0
       this.items[1].quantity-- // decrement a pokeball from items
-      if (this.party.length < 6) { // check if the party is full
+      if (this.party.length < 6) { // check if the party is full, add to party if not. otherwise, add to collection
         this.party.push(realPokemon)
       }
-      else { // if so, add to collection instead
+      else {
         this.collection.push(realPokemon)
       }
     }
     else { 
-      console.log('You do not have enough pokeballs to catch this Pokemon.')
+      console.log('You do not have enough pokeballs to catch this Pokemon.') // print this if pokeballs is 0
     }
   }
   else {
-    console.log('This Pokemon does not exist. Please try again.')
+    console.log('This Pokemon does not exist. Please try again.') // print this if no match for the pokemon is found
   }
 }
 
