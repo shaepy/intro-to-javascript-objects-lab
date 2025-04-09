@@ -424,29 +424,13 @@ Log the object when it's constructed.
 Solve Exercise 21 here:
 */
 
-// pseudo-code:
-// create a new-object
-// this new-object should have keys that hold arrays
-// each key will be named after an existing pokemon 'type' (i.e grass, fire, water...)
-
-// go through each pokemon-obj in the pokemon array,
-//     for each pokemon-obj, look at the key 'type'
-//         if the value of 'type' matches a 'type' in new-object
-//             add this pokemon obj to that array
-//         if the value of 'type' is not in new-object
-//             add it as a key in new-object 
-//             and add the obj to that array
-
 const typeCollector = {};
 
-for (let monster of pokemon) {
+pokemon.forEach((monster) => {
   if (monster.type in typeCollector === false) {
     typeCollector[monster.type] = [];
-    typeCollector[monster.type].push(monster)
   }
-  else if (monster.type in typeCollector) {
-    typeCollector[monster.type].push(monster)
-  }
-}
+  typeCollector[monster.type].push(monster)
+})
 
 console.log(typeCollector);
