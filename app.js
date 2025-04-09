@@ -368,7 +368,7 @@ game.catchPokemon = function(nameOfPokemon) {
   
   const realPokemon = checkName();
 
-  if (realPokemon !== undefined && realPokemon !== null) {
+  if (realPokemon !== undefined) {
     if (this.items[1].quantity > 0) {
       if (this.party.length < 6) {
         this.party.push(realPokemon)
@@ -394,11 +394,15 @@ game.catchPokemon('VULPIX')
 
 game.catchPokemon('DratINI')
 
-console.log(game)
+game.catchPokemon('ditto')
+
+console.log(game.collection)
 
 game.catchPokemon('ocaptainmycaptain')
 
 game.catchPokemon('gdsgkabibakumomo')
+
+console.log(game)
 
 
 /*
