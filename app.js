@@ -66,11 +66,19 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-game.gyms.forEach(location => {
-    if (location.difficulty < 3) {
+// difficultyLevel should take in a number.
+// The function will set all locations as 'completed: true' for all levels below that number
+const completeLevelsBelow = (difficultyLevel) => {
+  game.gyms.forEach(location => {
+    if (location.difficulty < difficultyLevel) {
         location.completed = true;
     }
 })
+}
+
+completeLevelsBelow(3);
+
+console.log(game.gyms)
 
 /*
 Exercise 7
@@ -157,7 +165,7 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[22])
 
-//console.log(game)
+console.log(game.items)
 
 /*
 Exercise 12
@@ -167,13 +175,10 @@ Exercise 12
 Solve Exercise 12 here:
 */
 
-game.gyms.forEach(location => {
-  if (location.difficulty < 6) {
-    location.completed = true;
-}
-})
+// Calling a previous function and setting the difficultyLevel to 6
+completeLevelsBelow(6);
 
-//console.log(game)
+console.log(game.gyms)
 
 /*
 Exercise 13
@@ -241,11 +246,10 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
-game.gyms.forEach(location => {
-  if (location.difficulty < 8) {
-    location.completed = true;
-}
-})
+// Calling a previous function and setting the difficultyLevel to 8
+completeLevelsBelow(8);
+
+console.log(game.gyms)
 
 /*
 Exercise 16
