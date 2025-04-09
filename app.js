@@ -304,6 +304,8 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[96])
 
+console.log(game.items)
+
 /*
 Exercise 19
 Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
@@ -343,17 +345,17 @@ game.catchPokemon = function(nameOfPokemon) {
   const checkName = () => {
     for (let monster of pokemon) {
       if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        return monster; // return the object if there is a match
+        return monster;   // return the object if there is a match
       }
     }
   }
-  // call the function and save the value to realPokemon
+   // call the function and save the value to realPokemon
   const realPokemon = checkName();
-  // check if realPokemon is empty or not
+   // check if realPokemon is empty or not
   if (realPokemon !== undefined) {
-    if (this.items[1].quantity > 0) { // if pokeballs is greater than 0
-      this.items[1].quantity-- // decrement a pokeball from items
-      if (this.party.length < 6) { // check if the party is full, add to party if not. otherwise, add to collection
+    if (this.items[1].quantity > 0) {       // if pokeballs is greater than 0
+      this.items[1].quantity--           // decrement a pokeball from items
+      if (this.party.length < 6) {    // check if the party is full, add to party if not. otherwise, add to collection
         this.party.push(realPokemon)
       }
       else {
@@ -361,7 +363,7 @@ game.catchPokemon = function(nameOfPokemon) {
       }
     }
     else { 
-      console.log('You do not have enough pokeballs to catch this Pokemon.') // print this if pokeballs is 0
+      console.log('You do not have enough pokeballs to catch this Pokemon.') // print this if pokeballs is less than or equals 0
     }
   }
   else {
