@@ -36,7 +36,31 @@ Exercise 3
 Solve Exercise 3 here:
 */
 
-game.difficulty = 'Easy';
+// This object determines the difficulty based on a string that is either 'easy', 'medium', or 'hard'.
+game.difficulty = '';
+
+// This function takes in a string and changes the difficulty if that string matches with a setting
+const changeDifficulty = (selection) => {
+  let selectedDifficulty = selection.toUpperCase()
+  const difficultySettings = ['EASY', 'MEDIUM', 'HARD']
+  // if selection is an option in difficultySettings
+  if (difficultySettings.includes(selectedDifficulty)) {
+    game.difficulty = selectedDifficulty // change the difficulty
+    console.log(`The current difficulty is ${selectedDifficulty}. `) // and print the current difficulty
+  }
+  else {
+    console.log('That is not an available setting. Choose EASY, MEDIUM, or HARD.')
+  }
+}
+
+changeDifficulty('easy')
+console.log(game.difficulty)
+
+changeDifficulty('HARD')
+console.log(game.difficulty)
+
+changeDifficulty('sds')
+
 
 /*
 Exercise 4
@@ -47,6 +71,7 @@ Solve Exercise 4 here:
 */
 
 game.party.push(pokemon[6])
+
 
 /*
 Exercise 5
