@@ -71,7 +71,7 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-game.party.push(pokemon[24])
+game.party.push(pokemon[24])  // I choose Pikachu
 
 /*
 Exercise 5
@@ -81,13 +81,13 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-// This method makes a random number within the pokemon array and pushes a pokemon to the game.party
+// This method makes a random number within the pokemon array and pushes a pokemon to the party
 game.foundRandomPokemon = function(){
   const randomNum = Math.floor(Math.random() * pokemon.length);
   this.party.push(pokemon[randomNum])
 }
 
-game.foundRandomPokemon(); // 3 random picks
+game.foundRandomPokemon();  // Call for 3 random picks
 game.foundRandomPokemon();
 game.foundRandomPokemon();
 
