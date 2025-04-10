@@ -39,20 +39,21 @@ Example: sort() is called in Exercise 17 but also affects the party order in pre
 // console.dir(pokemon, { maxArrayLength: null })
 
 // Exercise 1
-console.log('Exercise 1: ', pokemon[58].name)
+// console.log('Exercise 1: ', pokemon[58].name)
 
 // Exercise 2
 console.log(game)
 
 /*
+
 Exercise 3
 1. Add a new property to the `game` object. Let's call it "difficulty".
 2. Choose a value for "difficulty" that you think fits the game. Ex: "Easy", "Med" or "Hard". How would you assign it?
-
 Solve Exercise 3 here:
+
 */
 
-// This property determines the difficulty based on a string that is either 'easy', 'medium', or 'hard'.
+// This property determines the difficulty based on a string that is either 'EASY', 'MEDIUM', or 'HARD'.
 game.difficulty = '';
 
 // This function takes in a mode as a string and changes the difficulty if it matches with a setting
@@ -60,9 +61,9 @@ game.changeDifficulty = function(mode) {
   let selectedMode = mode.toUpperCase()
   const difficultySettings = ['EASY', 'MEDIUM', 'HARD']
 
-  if (difficultySettings.includes(selectedMode)) {                // If the mode is an option in Settings
-    this.difficulty = selectedMode                                // Change the difficulty
-    console.log(`The current difficulty is ${selectedMode}. `)    // and print the current difficulty
+  if (difficultySettings.includes(selectedMode)) {                         // If the mode is an option in Settings
+    this.difficulty = selectedMode                                         // Change the difficulty
+    console.log(`The current difficulty is set to ${selectedMode}. `)      // and print the current difficulty
   }
   else {
     console.log('That is not an available setting. Choose EASY, MEDIUM, or HARD.')
@@ -72,25 +73,24 @@ game.changeDifficulty = function(mode) {
 console.log('----------EXERCISE 3 RESULTS ----------')
 game.changeDifficulty('easy')
 
-console.log(game.difficulty) // Result: EASY
-
 game.changeDifficulty('hARD')
 
-console.log(game.difficulty) // Result: HARD
-
-game.changeDifficulty('sds') // Result: 'That is not an available setting. Choose EASY, MEDIUM, or HARD.'
+game.changeDifficulty('sds')
 
 /*
+
 Exercise 4
 1. Select a starter Pokémon from the `pokemon` array. Remember, a starter Pokémon's `starter` property is true.
 2. Add this Pokémon to the `game.party` array. Which array method will you use to add them?
 
 Solve Exercise 4 here:
+
 */
 
 game.party.push(pokemon[24])  // I choose Pikachu
 
 /*
+
 Exercise 5
 1. Choose three more Pokémon from the `pokemon` array and add them to your party.
 2. Consider different attributes like 'type' or 'HP' for your selection. Which array method will you use to add them?
@@ -99,19 +99,29 @@ Solve Exercise 5 here:
 */
 
 // This method makes a random number within the pokemon array and pushes a pokemon to the party
-game.foundRandomPokemon = function(){
+game.findRandomPokemon = function(){
   const randomNum = Math.floor(Math.random() * pokemon.length);
-  this.party.push(pokemon[randomNum])
+  const randomPokemon = pokemon[randomNum]
+  
+  if (this.party.length < 6) {               // This checks to see if party is full
+    this.party.push(randomPokemon)           // Add to party if not
+  }
+  else {
+    this.collection.push(randomPokemon)      // Add to collection if so
+  }
+
+  console.log(`Wow! You have found a wild ${randomPokemon.name}.`)
 }
 
-game.foundRandomPokemon();  // Call for 3 random picks
-game.foundRandomPokemon();
-game.foundRandomPokemon();
-
 console.log('----------EXERCISE 5 RESULTS ----------')
+game.findRandomPokemon();  // Call for 3 random picks
+game.findRandomPokemon();
+game.findRandomPokemon();
+
 console.log(game.party)
 
 /*
+
 Exercise 6
 1. Set the `completed` property to true for gyms with a difficulty below 3.
 2. Think about how you'd loop through the `gyms` array to check and update the `completed` property.
@@ -119,11 +129,11 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-// This method takes a number and sets each gym's completed from false to true, for all levels below the number
-game.completeLevelsBelow = function(difficultyLevel) {
-  this.gyms.forEach(location => {
-    if (location.difficulty < difficultyLevel) {
-        location.completed = true;
+// This function takes a number and sets all gyms below that level to completed: true
+game.completeLevelsBelow = function(difficultyLevel) {    
+  this.gyms.forEach(gym => {                              
+    if (gym.difficulty < difficultyLevel) {            
+        gym.completed = true;
     }
   })
 }
@@ -134,6 +144,7 @@ console.log('----------EXERCISE 6 RESULTS ----------')
 console.log(game.gyms)
 
 /*
+
 Exercise 7
 1. Evolve the starter Pokémon you added to your party earlier. Each starter Pokémon evolves into a specific one.
 2. How would you replace the current starter Pokémon in your party with its evolved form?
@@ -145,6 +156,7 @@ Hint:
   - Pokemon 25: Pikachu evolves into Pokemon 26: Raichu
 
 More Hints: The existing starter Pokemon will be *replaced* in your party with the Pokemon it evolved into. When working with an array of objects, the splice() array method is ideal for replacing one element with another. 
+
 Solve Exercise 7 here:
 */
 
@@ -175,34 +187,37 @@ console.log(pokemonEvolutions)
  It will look at all the monsters in your party, and will evolve any that are starterPokemons */
 game.evolveStarterPokemon = function(){
   for (let monster of this.party) {
-    if (pokemonEvolutions.starterPokemon.includes(monster)) { // If the Pokemon is a starterPokemon, find it and evolve it.
-      for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {
+    if (pokemonEvolutions.starterPokemon.includes(monster)) {                    // If the Pokemon is a starterPokemon,
+      for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {        // find it and evolve it.
         if (monster === pokemonEvolutions.starterPokemon[i]) { 
           this.party.splice(0, 1, pokemonEvolutions.starterNextEvolve[i]) 
+          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterNextEvolve[i].name}`)
         } 
       }
     }
-    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) { // If the Pokemon is a nextEvolve starter, find it and evolve it
-      for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {
+    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) {            // If the Pokemon is a nextEvolve starter, 
+      for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {     // find it and evolve it.
         if (monster === pokemonEvolutions.starterNextEvolve[i]) {
           this.party.splice(0, 1, pokemonEvolutions.starterFinalEvolve[i]) 
+          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFinalEvolve[i].name}`)
         } 
       }
     }
-    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) { // If it is at finalEvolve, show this message.
-      console.log('This Pokemon is already at the final evolution.')
+    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) {           // If it is at finalEvolve,
+      console.log(`Your ${monster.name} is already at the final evolution.`)             // show this message.
     }
   }
 }
 
 console.log('----------EXERCISE 7 RESULTS ----------')
 game.evolveStarterPokemon();
-// game.evolveStarterPokemon();
-// game.evolveStarterPokemon();
+game.evolveStarterPokemon();
+game.evolveStarterPokemon();
 
 console.log(game.party)
 
 /*
+
 Exercise 8
 1. Print the name of each Pokémon in your party.
 2. Consider using a loop or an array method to access each Pokémon's name.
@@ -211,14 +226,14 @@ Solve Exercise 8 here:
 */
 
 // This method will log the name of each Pokemon in the party and its corresponding position.
-game.showParty = function(){
+game.viewParty = function(){
   for (let i = 0; i < game.party.length; i++) {
     console.log(`Party Position ${i + 1}: `, game.party[i].name)
   }
 }
 
 console.log('----------EXERCISE 8 RESULTS ----------')
-game.showParty();
+game.viewParty();
 
 /*
 Exercise 9
@@ -471,11 +486,11 @@ game.catchPokemon = function(nameOfPokemon) {
   const checkName = () => {
     for (let monster of pokemon) {
       if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        return monster;  // Return the object if there is a match
+        return monster;           // Return the object if there is a match
       }
     }
   }
-  // Call the function
+  // Call the function and save it
   const realPokemon = checkName();
 
   // This function checks which index pokeballs is in
@@ -486,47 +501,48 @@ game.catchPokemon = function(nameOfPokemon) {
       }
     }
   }
-  // Call the function
+  // Call the function and save it
   const pokeballItemSlot = checkItems();
 
-   // Check if realPokemon is empty or not
+   // Check if realPokemon has returned something
   if (realPokemon !== undefined) {
-    if (pokeballItemSlot.quantity > 0) {    // If pokeballs is greater than 0
-      pokeballItemSlot.quantity--           // Decrement a pokeball from items
-      if (this.party.length < 6) {          // Check if the party is full. If not, then add to party. Else, add to collection
+    if (pokeballItemSlot.quantity > 0) {         // If pokeballs is greater than 0
+      pokeballItemSlot.quantity--                // Decrement a pokeball from items
+      if (this.party.length < 6) {               // Check if the party is full. If not, then add to party. Else, add to collection
         this.party.push(realPokemon)
+        console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} is now in your party.`)
       }
       else {
         this.collection.push(realPokemon)
+        console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} has been added to your collection.`)
       }
     }
     else { 
-      console.log('You do not have enough pokeballs to catch this Pokemon.') // Print this if pokeballs is less than or equals 0
+      console.log('You are out of Pokeballs.')       // Print this if pokeballs is less than or equals 0
     }
   }
   else {
-    console.log('This Pokemon does not exist. Please try again.') // Print this if no match for the pokemon is found
+    console.log('This Pokemon does not exist. Please try again.')      // Print this if no match for the pokemon is found
   }
 }
 
 console.log('----------EXERCISE 20 RESULTS ----------')
-game.catchPokemon('piKachu')
+game.catchPokemon('Poliwag')
 
 game.catchPokemon('VULPIX')
 
-game.catchPokemon('DratINI')
+game.catchPokemon('LickiTUng')
 
 game.catchPokemon('ditto')
 
+game.catchPokemon('ocaptainmycaptaIn')
+
+game.catchPokemon('Gdsgkabibakumomo')
+
 console.log(game.collection)
 
-game.catchPokemon('ocaptainmycaptain')
-
-game.catchPokemon('gdsgkabibakumomo')
-
-console.log(game)
-
 /*
+
 Exercise 21
 Dynamically construct an object with the existing `pokemon` data sorted by the different pokemon types. The object will have this structure:
 {
@@ -546,21 +562,23 @@ Dynamically construct an object with the existing `pokemon` data sorted by the d
   * etc... until there is an array for every Pokemon type!
 }
 Log the object when it's constructed.
+
 Solve Exercise 21 here:
 */
 
 // This object will hold the new types and their matching pokemon objects
 const typeCollector = {}; 
 
-pokemon.forEach((monster) => {    // For each monster in Pokemon
-  if (monster.type in typeCollector === false) {    // If the monster's type is not in typeCollector
-    typeCollector[monster.type] = [];    // Create an array property with the type as the key name 
+pokemon.forEach((monster) => {                         // For each monster in Pokemon
+  if (monster.type in typeCollector === false) {       // If the monster's type is not in typeCollector
+    typeCollector[monster.type] = [];                   // Create an array property with the type as the key name 
   }
-  typeCollector[monster.type].push(monster)   // Add this monster to a type that matches
+  typeCollector[monster.type].push(monster)             // Add this monster to a type that matches
 })
 
 console.log('----------EXERCISE 21 RESULTS ----------')
 console.log(typeCollector);
+
 
 /*
 pseudo-code for Exercise 21:
