@@ -20,14 +20,15 @@ const game = {
   }
 
 
-
 /* 
 ********************************************************************************************************
+
 
 NOTE FOR ASSIGNMENT/PEER REVIEW: 
 Recommended to use the console in browser instead of the node app.js from VS terminal, to easily 
 read the console messages that are logged through the methods in each exercise. The methods log what
 actions are taken place as they are performed.
+
 
 ********************************************************************************************************
 */
@@ -40,6 +41,7 @@ actions are taken place as they are performed.
 // console.log('Exercise 1: ', pokemon[58].name)
 
 // Exercise 2
+console.log('----------EXERCISE 2 RESULTS ----------')
 console.log(game)
 
 /*
@@ -61,7 +63,7 @@ game.changeDifficulty = function(mode) {
 
   if (difficultySettings.includes(selectedMode)) {                         // If the mode is an option in Settings
     this.difficulty = selectedMode                                         // Change the difficulty
-    console.log(`The current difficulty is set to ${selectedMode}. `)      // and print the current difficulty
+    console.log(`The current difficulty is set to ${selectedMode}.`)       // and print the current difficulty
   }
   else {
     console.log('That is not an available setting. Choose EASY, MEDIUM, or HARD.')
@@ -110,7 +112,7 @@ game.findRandomPokemon = function(){
 }
 
 console.log('----------EXERCISE 5 RESULTS ----------')
-game.findRandomPokemon();         // Call method for 3 random Pokemon
+game.findRandomPokemon();         // Call method for random Pokemon
 game.findRandomPokemon();         // Re-save to refresh browser console and select different random Pokemon
 game.findRandomPokemon();
 
@@ -207,7 +209,7 @@ game.evolveStarterPokemon = function(){
 }
 
 game.evolveStarterPokemon();
-game.evolveStarterPokemon();
+// game.evolveStarterPokemon();
 // game.evolveStarterPokemon();
 
 console.log(game.party)
@@ -230,7 +232,7 @@ game.viewParty = function(){
   }
 }
 
-game.viewParty();
+game.viewParty()
 
 /*
 
@@ -266,12 +268,12 @@ After writing this method, call it and pass in a Pokemon object of your choice f
 Solve Exercise 10 here:
 */
 
-// Note: I updated this method in Exercise 20.
+// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj)
 }
 
-game.catchPokemon(pokemon[64])
+// game.catchPokemon(pokemon[64])
 
 /*
 
@@ -287,14 +289,14 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
-// Note: I updated this method in Exercise 20.
+// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj)
     this.items[1].quantity--
 }
 
-game.catchPokemon(pokemon[22])
-//console.log(game.items)
+game.catchPokemon(pokemon[150])
+// console.log(game.items)
 
 /*
 
@@ -433,7 +435,7 @@ Solve Exercise 18 here:
 
 game.collection = [];
 
-// Note: I updated this method in Exercise 20.
+// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
   this.items[1].quantity--
   if (game.party.length < 6) {
@@ -444,9 +446,8 @@ game.catchPokemon = function(pokemonObj) {
   }
 }
 
-game.catchPokemon(pokemon[96])
-
-//console.log(game.items)
+game.catchPokemon(pokemon[129])
+// console.log(game.items)
 
 /*
 Exercise 19
@@ -457,7 +458,7 @@ Also, ensure that the Pokemon isn't added to the `game.party` or the `game.colle
 Solve Exercise 19 here:
 */
 
-// Note: I updated this method in Exercise 20.
+// NOTE: I updated this method in Exercise 20.
 // This function takes a pokemon object and checks if pokeballs are available
 game.catchPokemon = function(pokemonObj) {
   if (this.items[1].quantity > 0) {
@@ -530,11 +531,11 @@ game.catchPokemon = function(nameOfPokemon) {
 }
 
 console.log('----------EXERCISE 20 RESULTS ----------')
-
+// Throw until you're out of pokeballs!
 game.catchPokemon('ocaptainmycaptaIn')
+game.catchPokemon('SNORLAX')
 game.catchPokemon('Gdsgkabibakumomo')
 game.catchPokemon('jigglypuff')
-game.catchPokemon('SNORLAX')
 game.catchPokemon('ditto')
 game.catchPokemon('MaGIKArp')
 game.catchPokemon('VULPIX')
