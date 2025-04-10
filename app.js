@@ -19,7 +19,7 @@ const game = {
     ],
   }
 
-// This prints all the pokemon 
+// This prints all the pokemon
 // console.dir(pokemon, { maxArrayLength: null })
 
 // Exercise 1
@@ -39,28 +39,31 @@ Solve Exercise 3 here:
 // This object determines the difficulty based on a string that is either 'easy', 'medium', or 'hard'.
 game.difficulty = '';
 
-// This function takes in a string and changes the difficulty if that string matches with a setting
-const changeDifficulty = (selection) => {
-  let selectedDifficulty = selection.toUpperCase()
+// game.catchPokemon = function(pokemonObj) {
+//   this.party.push(pokemonObj)
+// }
+
+// This function takes in a mode as a string and changes the difficulty if it matches with a setting
+game.changeDifficulty = function(mode) {
+  let selectedMode = mode.toUpperCase()
   const difficultySettings = ['EASY', 'MEDIUM', 'HARD']
-  // if selection is an option in difficultySettings
-  if (difficultySettings.includes(selectedDifficulty)) {
-    game.difficulty = selectedDifficulty // change the difficulty
-    console.log(`The current difficulty is ${selectedDifficulty}. `) // and print the current difficulty
+
+  if (difficultySettings.includes(selectedMode)) {   // if mode is an option in Settings
+    this.difficulty = selectedMode // change the difficulty
+    console.log(`The current difficulty is ${selectedMode}. `) // and print the current difficulty
   }
   else {
     console.log('That is not an available setting. Choose EASY, MEDIUM, or HARD.')
   }
 }
 
-changeDifficulty('easy')
+game.changeDifficulty('easy')
 console.log(game.difficulty)
 
-changeDifficulty('HARD')
+game.changeDifficulty('HARD')
 console.log(game.difficulty)
 
-changeDifficulty('sds')
-
+game.changeDifficulty('sds')
 
 /*
 Exercise 4
@@ -70,8 +73,7 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-game.party.push(pokemon[6])
-
+game.party.push(pokemon[24])
 
 /*
 Exercise 5
@@ -81,7 +83,7 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-game.party.push(pokemon[78], pokemon[2], pokemon[37])
+game.party.push(pokemon[78], pokemon[83], pokemon[111])
 
 /*
 Exercise 6
@@ -91,17 +93,16 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-// difficultyLevel should take in a number.
-// This function will set all locations as completed from false to true, for all levels below that number
-const completeLevelsBelow = (difficultyLevel) => {
-  game.gyms.forEach(location => {
+// difficultyLevel takes a in a number and this method sets each gym's completed from false to true, for all levels below this number
+game.completeLevelsBelow = function(difficultyLevel) {
+  this.gyms.forEach(location => {
     if (location.difficulty < difficultyLevel) {
         location.completed = true;
     }
-})
+  })
 }
 
-completeLevelsBelow(3);
+game.completeLevelsBelow(3);
 
 console.log(game.gyms)
 
@@ -120,7 +121,29 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-game.party.splice(0, 1, pokemon[7])
+// starterPokemon holds all the starter pokemons
+const starterPokemon = [pokemon[0], pokemon[3], pokemon[6], pokemon[24]]
+// starterEvolution holds the evolved counterparts
+const starterEvolutions = [pokemon[1], pokemon[4], pokemon[7], pokemon[25]]
+
+// This method evolves the current starter Pokemon in game.party
+game.evolveStarterPokemon = function(){
+  for (let monster of this.party) {
+    if (starterPokemon.includes(monster)) {
+      // This function checks to see which starterPokemon it is, and replaces it with the starterEvolution pokemon
+      const evolve = () => {
+        for (let i = 0; i < starterPokemon.length; i++) {
+          if (monster === starterPokemon[i]) {
+            this.party.splice(0, 1, starterEvolutions[i])
+          }
+        }
+      }
+      evolve();
+    }
+  }
+}
+
+game.evolveStarterPokemon();
 
 console.log(game.party)
 
@@ -132,9 +155,14 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
-for (let i = 0; i < game.party.length; i++) {
-    console.log(`${i + 1}: `, game.party[i].name)
+// This function will log the name of each Pokemon in your party and its corresponding position.
+game.showParty = function(){
+  for (let i = 0; i < game.party.length; i++) {
+    console.log(`Party Position ${i + 1}: `, game.party[i].name)
+  }
 }
+
+game.showParty();
 
 /*
 Exercise 9
@@ -144,11 +172,16 @@ Exercise 9
 Solve Exercise 9 here:
 */ 
 
-for (let monster of pokemon) {
+// This function will log all the starter Pokemons available in the game.
+game.showStarterPokemon = function(){
+  for (let monster of pokemon) {
     if (monster.starter === true) {
         console.log(`${monster.name} is a starter pokemon.`)
     }
+  }
 }
+
+game.showStarterPokemon();
 
 /*
 Exercise 10
@@ -200,8 +233,8 @@ Exercise 12
 Solve Exercise 12 here:
 */
 
-// Calling a previous function and setting the difficultyLevel to 6
-completeLevelsBelow(6);
+// Calling a previous method and setting the difficultyLevel to 6
+game.completeLevelsBelow(6);
 
 console.log(game.gyms)
 
@@ -248,7 +281,6 @@ console.log(gymTally)
 /*
 Exercise 14
 1. Add a `partyCount` method to `game` that counts the number of Pokémon in your party.
-
 This method should:
   - Not accept any arguments.
   - Count the number of Pokemon in the party.
@@ -271,8 +303,8 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
-// Calling a previous function and setting the difficultyLevel to 8
-completeLevelsBelow(8);
+// Calling a previous method and setting the difficultyLevel to 8
+game.completeLevelsBelow(8);
 
 console.log(game.gyms)
 
@@ -292,6 +324,8 @@ Exercise 17
 Solve Exercise 17 here:
 */
 
+// This sorts game.party by descending order of highest HP first by passing two arguments
+// It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0
 game.party.sort(function(a,b){
     return b.hp - a.hp
   }
@@ -370,7 +404,7 @@ game.catchPokemon = function(nameOfPokemon) {
   const checkName = () => {
     for (let monster of pokemon) {
       if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        return monster;   // return the object if there is a match
+        return monster;  // return the object if there is a match
       }
     }
   }
@@ -380,7 +414,7 @@ game.catchPokemon = function(nameOfPokemon) {
   if (realPokemon !== undefined) {
     if (this.items[1].quantity > 0) {       // if pokeballs is greater than 0
       this.items[1].quantity--           // decrement a pokeball from items
-      if (this.party.length < 6) {    // check if the party is full, add to party if not. otherwise, add to collection
+      if (this.party.length < 6) {    // check if the party is full. if not, then add to party. else, add to collection
         this.party.push(realPokemon)
       }
       else {
