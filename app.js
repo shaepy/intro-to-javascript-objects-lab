@@ -81,15 +81,15 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-// This function makes a random number within the pokemon array and pushes a pokemon to the game.party
-const foundRandomPokemon = () => {
+// This method makes a random number within the pokemon array and pushes a pokemon to the game.party
+game.foundRandomPokemon = function(){
   const randomNum = Math.floor(Math.random() * pokemon.length);
-  game.party.push(pokemon[randomNum])
+  this.party.push(pokemon[randomNum])
 }
 
-foundRandomPokemon(); // 3 random picks
-foundRandomPokemon();
-foundRandomPokemon();
+game.foundRandomPokemon(); // 3 random picks
+game.foundRandomPokemon();
+game.foundRandomPokemon();
 
 console.log(game.party)
 
@@ -190,7 +190,7 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
-// This function will log the name of each Pokemon in the party and its corresponding position.
+// This method will log the name of each Pokemon in the party and its corresponding position.
 game.showParty = function(){
   for (let i = 0; i < game.party.length; i++) {
     console.log(`Party Position ${i + 1}: `, game.party[i].name)
@@ -207,13 +207,13 @@ Exercise 9
 Solve Exercise 9 here:
 */ 
 
-// This function will log all the starter Pokemons available in the game.
+// This method will log all the starter Pokemons available in the game.
 game.showStarterPokemon = function(){
-  for (let monster of pokemon) {
+  pokemon.forEach(monster => {
     if (monster.starter === true) {
-        console.log(`${monster.name} is a starter pokemon.`)
-    }
+      console.log(`${monster.name} is a starter pokemon.`)
   }
+  })
 }
 
 game.showStarterPokemon();
