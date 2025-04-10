@@ -359,8 +359,8 @@ Exercise 17
 Solve Exercise 17 here:
 */
 
-// This sorts game.party by descending order of highest HP first by passing two arguments
-// It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0
+/* This sorts the party by descending order of highest HP first by passing two arguments.
+  It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 */
 game.party.sort(function(a,b){
     return b.hp - a.hp
   }
@@ -386,13 +386,12 @@ Solve Exercise 18 here:
 game.collection = [];
 
 game.catchPokemon = function(pokemonObj) {
+  this.items[1].quantity--
   if (game.party.length < 6) {
     this.party.push(pokemonObj)
-    this.items[1].quantity--
   }
   else {
     this.collection.push(pokemonObj)
-    this.items[1].quantity--
   }
 }
 
@@ -411,13 +410,12 @@ Solve Exercise 19 here:
 
 game.catchPokemon = function(pokemonObj) {
   if (this.items[1].quantity > 0) {
+    this.items[1].quantity--
     if (this.party.length < 6) {
       this.party.push(pokemonObj)
-      this.items[1].quantity--
     }
     else {
       this.collection.push(pokemonObj)
-      this.items[1].quantity--
     }
   }
   else {
