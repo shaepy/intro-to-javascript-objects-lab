@@ -22,16 +22,14 @@ const game = {
 
 
 /* 
-***************************************************************************************************
+********************************************************************************************************
 
-NOTE FOR ASSIGNMENT REVIEW: 
-I noticed while testing with the live server browser, the console would log the results as if
-future methods were executed. Unsure if this is a setting but certain logs might show these updates 
-from methods created or called later in the code, which are meant for a future exercise.
+NOTE FOR ASSIGNMENT/PEER REVIEW: 
+Recommended to use the console in browser instead of the node app.js from VS terminal, to easily 
+read the console messages that are logged through the methods in each exercise. It flows much better, 
+promise!
 
-Example: sort() is called in Exercise 17 but also affects the party order in previous logs.
-
-***************************************************************************************************
+********************************************************************************************************
 */
 
 
@@ -72,9 +70,7 @@ game.changeDifficulty = function(mode) {
 
 console.log('----------EXERCISE 3 RESULTS ----------')
 game.changeDifficulty('easy')
-
 game.changeDifficulty('hARD')
-
 game.changeDifficulty('sds')
 
 /*
@@ -105,17 +101,17 @@ game.findRandomPokemon = function(){
   
   if (this.party.length < 6) {               // This checks to see if party is full
     this.party.push(randomPokemon)           // Add to party if not
+    console.log(`Wow! You have found a wild ${randomPokemon.name}. Check your party.`)
   }
   else {
     this.collection.push(randomPokemon)      // Add to collection if so
+    console.log(`Wow! You have found a wild ${randomPokemon.name}. Check your collection.`)
   }
-
-  console.log(`Wow! You have found a wild ${randomPokemon.name}.`)
 }
 
 console.log('----------EXERCISE 5 RESULTS ----------')
-game.findRandomPokemon();  // Call for 3 random picks
-game.findRandomPokemon();
+game.findRandomPokemon();         // Call method for 3 random Pokemon
+game.findRandomPokemon();         // Re-save to refresh browser console and select different random Pokemon
 game.findRandomPokemon();
 
 console.log(game.party)
@@ -134,14 +130,13 @@ game.completeLevelsBelow = function(difficultyLevel) {
   this.gyms.forEach(gym => {                              
     if (gym.difficulty < difficultyLevel) {            
         gym.completed = true;
+        console.log(`Congrats! You have defeated the gym leader at ${gym.location}.`)
     }
   })
 }
 
-game.completeLevelsBelow(3);
-
 console.log('----------EXERCISE 6 RESULTS ----------')
-console.log(game.gyms)
+game.completeLevelsBelow(3);
 
 /*
 
@@ -159,6 +154,8 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 
 Solve Exercise 7 here:
 */
+
+console.log('----------EXERCISE 7 RESULTS ----------')
 
 // This object holds starter Pokemon and their paired evolutions
 let pokemonEvolutions = {
@@ -191,7 +188,7 @@ game.evolveStarterPokemon = function(){
       for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {        // find it and evolve it.
         if (monster === pokemonEvolutions.starterPokemon[i]) { 
           this.party.splice(0, 1, pokemonEvolutions.starterNextEvolve[i]) 
-          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterNextEvolve[i].name}`)
+          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterNextEvolve[i].name}!`)
         } 
       }
     }
@@ -199,7 +196,7 @@ game.evolveStarterPokemon = function(){
       for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {     // find it and evolve it.
         if (monster === pokemonEvolutions.starterNextEvolve[i]) {
           this.party.splice(0, 1, pokemonEvolutions.starterFinalEvolve[i]) 
-          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFinalEvolve[i].name}`)
+          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFinalEvolve[i].name}!`)
         } 
       }
     }
@@ -209,10 +206,9 @@ game.evolveStarterPokemon = function(){
   }
 }
 
-console.log('----------EXERCISE 7 RESULTS ----------')
 game.evolveStarterPokemon();
 game.evolveStarterPokemon();
-game.evolveStarterPokemon();
+// game.evolveStarterPokemon();
 
 console.log(game.party)
 
@@ -225,6 +221,8 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
+console.log('----------EXERCISE 8 RESULTS ----------')
+
 // This method will log the name of each Pokemon in the party and its corresponding position.
 game.viewParty = function(){
   for (let i = 0; i < game.party.length; i++) {
@@ -232,16 +230,17 @@ game.viewParty = function(){
   }
 }
 
-console.log('----------EXERCISE 8 RESULTS ----------')
 game.viewParty();
 
 /*
+
 Exercise 9
 1. Can you print out all the starter Pokémon from the `pokemon` array?
 2. Think about how you can identify a starter Pokémon and then log their names.
 
 Solve Exercise 9 here:
 */ 
+console.log('----------EXERCISE 9 RESULTS ----------')
 
 // This method will log all the starter Pokemons available in the game.
 game.showStarterPokemon = function(){
@@ -252,10 +251,10 @@ game.showStarterPokemon = function(){
   })
 }
 
-console.log('----------EXERCISE 9 RESULTS ----------')
 game.showStarterPokemon();
 
 /*
+
 Exercise 10
 Create a method called `catchPokemon` and add it to the `game` object. You should not need to edit the original game object directly. This method should:
   - Accept an object as a parameter called `pokemonObj`
@@ -275,6 +274,7 @@ game.catchPokemon = function(pokemonObj) {
 game.catchPokemon(pokemon[64])
 
 /*
+
 Exercise 11
 1. Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify it so that it also decreases the number of pokeballs in your inventory each time you catch a Pokémon.
 2. How will you find and update the quantity of pokeballs in the `game.items` array?
@@ -294,11 +294,10 @@ game.catchPokemon = function(pokemonObj) {
 }
 
 game.catchPokemon(pokemon[22])
-
-console.log('----------EXERCISE 11 RESULTS ----------')
-console.log(game.items)
+//console.log(game.items)
 
 /*
+
 Exercise 12
 1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
  (change the value of `complete` in the qualifying objects from false to true).
@@ -306,13 +305,12 @@ Exercise 12
 Solve Exercise 12 here:
 */
 
+console.log('----------EXERCISE 12 RESULTS ----------')
 // Calling a previous method and setting the difficultyLevel to 6
 game.completeLevelsBelow(6);
 
-console.log('----------EXERCISE 12 RESULTS ----------')
-console.log(game.gyms)
-
 /*
+
 Exercise 13
 1. Create a `gymStatus` method in `game` to tally completed and incomplete gyms.
 2. How will you iterate through the `gyms` array and update the tally? Remember to log the final tally.
@@ -353,6 +351,7 @@ console.log('----------EXERCISE 13 RESULTS ----------')
 game.gymStatus()
 
 /*
+
 Exercise 14
 1. Add a `partyCount` method to `game` that counts the number of Pokémon in your party.
 This method should:
@@ -363,14 +362,18 @@ This method should:
 Solve Exercise 14 here:
 */
 
+console.log('----------EXERCISE 14 RESULTS ----------')
+
+// This method counts the number of Pokemon in the party and returns that value
 game.partyCount = function() {
     return game.party.length
 }
 
-console.log('----------EXERCISE 14 RESULTS ----------')
-console.log(game.partyCount())
+const currentPartyNumber = game.partyCount()
+console.log(`You have ${currentPartyNumber} Pokemon in your party.`)    // Printing this to console for testing
 
 /*
+
 Exercise 15
 1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
 (change the value of `complete` in the qualifying objects from false to true).
@@ -378,10 +381,10 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
+console.log('----------EXERCISE 15 RESULTS ----------')
 // Calling a previous method and setting the difficultyLevel to 8
 game.completeLevelsBelow(8);
 
-console.log('----------EXERCISE 15 RESULTS ----------')
 console.log(game.gyms)
 
 /*
@@ -508,6 +511,7 @@ game.catchPokemon = function(nameOfPokemon) {
   if (realPokemon !== undefined) {
     if (pokeballItemSlot.quantity > 0) {         // If pokeballs is greater than 0
       pokeballItemSlot.quantity--                // Decrement a pokeball from items
+      console.log(`You threw a Pokeball. You have ${pokeballItemSlot.quantity} Pokeballs remaining.`)
       if (this.party.length < 6) {               // Check if the party is full. If not, then add to party. Else, add to collection
         this.party.push(realPokemon)
         console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} is now in your party.`)
@@ -527,19 +531,21 @@ game.catchPokemon = function(nameOfPokemon) {
 }
 
 console.log('----------EXERCISE 20 RESULTS ----------')
-game.catchPokemon('Poliwag')
-
-game.catchPokemon('VULPIX')
-
-game.catchPokemon('LickiTUng')
-
-game.catchPokemon('ditto')
 
 game.catchPokemon('ocaptainmycaptaIn')
-
 game.catchPokemon('Gdsgkabibakumomo')
+game.catchPokemon('jigglypuff')
+game.catchPokemon('SNORLAX')
+game.catchPokemon('ditto')
+game.catchPokemon('MaGIKArp')
+game.catchPokemon('VULPIX')
+game.catchPokemon('Ninetales')
+game.catchPokemon('Poliwag')
+game.catchPokemon('Butterfree')
 
 console.log(game.collection)
+
+console.log(game.items)
 
 /*
 
