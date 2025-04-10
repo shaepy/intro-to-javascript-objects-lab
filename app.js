@@ -60,9 +60,9 @@ game.changeDifficulty = function(mode) {
   let selectedMode = mode.toUpperCase()
   const difficultySettings = ['EASY', 'MEDIUM', 'HARD']
 
-  if (difficultySettings.includes(selectedMode)) {   // if mode is an option in Settings
-    this.difficulty = selectedMode // change the difficulty
-    console.log(`The current difficulty is ${selectedMode}. `) // and print the current difficulty
+  if (difficultySettings.includes(selectedMode)) {                // If the mode is an option in Settings
+    this.difficulty = selectedMode                                // Change the difficulty
+    console.log(`The current difficulty is ${selectedMode}. `)    // and print the current difficulty
   }
   else {
     console.log('That is not an available setting. Choose EASY, MEDIUM, or HARD.')
