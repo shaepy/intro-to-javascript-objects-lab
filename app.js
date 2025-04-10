@@ -441,13 +441,25 @@ game.catchPokemon = function(nameOfPokemon) {
       }
     }
   }
-   // Call the function and save the value to realPokemon
+  // Call the function
   const realPokemon = checkName();
+
+  // This function checks which index pokeballs is in
+  const checkItems = () => {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].name === 'pokeball') {
+        return this.items[i]
+      }
+    }
+  }
+  // Call the function
+  const pokeballItemSlot = checkItems();
+
    // Check if realPokemon is empty or not
   if (realPokemon !== undefined) {
-    if (this.items[1].quantity > 0) {       // If pokeballs is greater than 0
-      this.items[1].quantity--           // Decrement a pokeball from items
-      if (this.party.length < 6) {    // Check if the party is full. If not, then add to party. Else, add to collection
+    if (pokeballItemSlot.quantity > 0) {    // If pokeballs is greater than 0
+      pokeballItemSlot.quantity--           // Decrement a pokeball from items
+      if (this.party.length < 6) {          // Check if the party is full. If not, then add to party. Else, add to collection
         this.party.push(realPokemon)
       }
       else {
