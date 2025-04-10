@@ -36,7 +36,7 @@ Exercise 3
 Solve Exercise 3 here:
 */
 
-// This object determines the difficulty based on a string that is either 'easy', 'medium', or 'hard'.
+// This property determines the difficulty based on a string that is either 'easy', 'medium', or 'hard'.
 game.difficulty = '';
 
 // This function takes in a mode as a string and changes the difficulty if it matches with a setting
@@ -57,7 +57,7 @@ game.changeDifficulty('easy')
 
 console.log(game.difficulty)
 
-game.changeDifficulty('HARD')
+game.changeDifficulty('hARD')
 
 console.log(game.difficulty)
 
@@ -81,7 +81,17 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-game.party.push(pokemon[78], pokemon[83], pokemon[111])
+// This function makes a random number within the pokemon array and pushes a pokemon to the game.party
+const foundRandomPokemon = () => {
+  const randomNum = Math.floor(Math.random() * pokemon.length);
+  game.party.push(pokemon[randomNum])
+}
+
+foundRandomPokemon(); // 3 random picks
+foundRandomPokemon();
+foundRandomPokemon();
+
+console.log(game.party)
 
 /*
 Exercise 6
@@ -144,14 +154,14 @@ console.log(pokemonEvolutions)
 // This method evolves the current starter Pokemon in game.party up to its final evolution
 game.evolveStarterPokemon = function(){
   for (let monster of this.party) {
-    if (pokemonEvolutions.starterPokemon.includes(monster)) { // if the pokemon is a starter pokemon, evolve it
+    if (pokemonEvolutions.starterPokemon.includes(monster)) { // if the pokemon is a starter pokemon, find it and evolve it
       for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {
-        if (monster === pokemonEvolutions.starterPokemon[i]) {
+        if (monster === pokemonEvolutions.starterPokemon[i]) { 
           this.party.splice(0, 1, pokemonEvolutions.starterNextEvolve[i]) 
         } 
       }
     }
-    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) { // if it is a nextevolution, evolve it
+    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) { // if it is a next evolution, find it and evolve it
       for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {
         if (monster === pokemonEvolutions.starterNextEvolve[i]) {
           this.party.splice(0, 1, pokemonEvolutions.starterFinalEvolve[i]) 
