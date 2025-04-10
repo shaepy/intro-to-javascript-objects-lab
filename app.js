@@ -26,8 +26,8 @@ const game = {
 
 NOTE FOR ASSIGNMENT/PEER REVIEW: 
 Recommended to use the console in browser instead of the node app.js from VS terminal, to easily 
-read the console messages that are logged through the methods in each exercise. It flows much better, 
-promise!
+read the console messages that are logged through the methods in each exercise. The methods log what
+actions are taken place as they are performed.
 
 ********************************************************************************************************
 */
@@ -446,8 +446,7 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[96])
 
-console.log('----------EXERCISE 18 RESULTS ----------')
-console.log(game.items)
+//console.log(game.items)
 
 /*
 Exercise 19
