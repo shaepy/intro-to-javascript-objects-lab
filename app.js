@@ -467,7 +467,6 @@ Solve Exercise 20 here:
 */
 
 game.catchPokemon = function(nameOfPokemon) {
-
   // This function checks if the name is an existing object in pokemon 
   const checkName = () => {
     for (let monster of pokemon) {
