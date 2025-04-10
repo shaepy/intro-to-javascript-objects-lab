@@ -119,27 +119,54 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-// This array holds all the starter pokemons
-const starterPokemon = [pokemon[0], pokemon[3], pokemon[6], pokemon[24]]
-// This array holds the evolved counterparts
-const starterEvolutions = [pokemon[1], pokemon[4], pokemon[7], pokemon[25]]
+// This object holds starter Pokemon and their paired evolutions
+let pokemonEvolutions = {
+  starterPokemon: [],
+  starterNextEvolve: [],
+  starterFinalEvolve: []
+}
 
-// This method evolves the current starter Pokemon in game.party
-game.evolveStarterPokemon = function(){
-  for (let monster of this.party) {
-    if (starterPokemon.includes(monster)) {
-      // This function checks to see which starterPokemon it is, and replaces it with the starterEvolution pokemon
-      const evolve = () => {
-        for (let i = 0; i < starterPokemon.length; i++) {
-          if (monster === starterPokemon[i]) {
-            this.party.splice(0, 1, starterEvolutions[i])
-          }
-        }
-      }
-      evolve();
+// This function fills up the pokemonEvolutions object based on which Pokemon have starter: true
+const setStarterPokemon = () => {
+  for (let i = 0; i < pokemon.length; i++) {
+    if (pokemon[i].starter === true) {
+      pokemonEvolutions.starterPokemon.push(pokemon[i])
+      pokemonEvolutions.starterNextEvolve.push(pokemon[i+1])
+      pokemonEvolutions.starterFinalEvolve.push(pokemon[i+2])
     }
   }
 }
+
+setStarterPokemon();
+
+console.log(pokemonEvolutions)
+
+// This method evolves the current starter Pokemon in game.party up to its final evolution
+game.evolveStarterPokemon = function(){
+  for (let monster of this.party) {
+    if (pokemonEvolutions.starterPokemon.includes(monster)) { // if the pokemon is a starter pokemon, evolve it
+      for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {
+        if (monster === pokemonEvolutions.starterPokemon[i]) {
+          this.party.splice(0, 1, pokemonEvolutions.starterNextEvolve[i]) 
+        } 
+      }
+    }
+    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) { // if it is a nextevolution, evolve it
+      for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {
+        if (monster === pokemonEvolutions.starterNextEvolve[i]) {
+          this.party.splice(0, 1, pokemonEvolutions.starterFinalEvolve[i]) 
+        } 
+      }
+    }
+    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) { // if it is at final evolution, show message
+      console.log('This Pokemon is already at the final evolution.')
+    }
+  }
+}
+
+game.evolveStarterPokemon();
+
+game.evolveStarterPokemon();
 
 game.evolveStarterPokemon();
 
