@@ -232,6 +232,7 @@ After writing this method, call it and pass in a Pokemon object of your choice f
 Solve Exercise 10 here:
 */
 
+// Note: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj)
 }
@@ -251,6 +252,7 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
+// Note: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj)
     this.items[1].quantity--
@@ -359,8 +361,10 @@ Exercise 17
 Solve Exercise 17 here:
 */
 
-/* This sorts the party by descending order of highest HP first by passing two arguments.
-  It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 */
+/* 
+This sorts the party by descending order of highest HP first by passing two arguments.
+  It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 
+  */
 game.party.sort(function(a,b){
     return b.hp - a.hp
   }
@@ -383,8 +387,10 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 18 here:
 */
 
+
 game.collection = [];
 
+// Note: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
   this.items[1].quantity--
   if (game.party.length < 6) {
@@ -408,18 +414,20 @@ Also, ensure that the Pokemon isn't added to the `game.party` or the `game.colle
 Solve Exercise 19 here:
 */
 
+// Note: I updated this method in Exercise 20.
+// This function takes a pokemon object and checks if pokeballs are available
 game.catchPokemon = function(pokemonObj) {
   if (this.items[1].quantity > 0) {
-    this.items[1].quantity--
-    if (this.party.length < 6) {
-      this.party.push(pokemonObj)
+    this.items[1].quantity--   // Decrement a pokeball if so
+    if (this.party.length < 6) { 
+      this.party.push(pokemonObj)   // Push to party if less than 6
     }
     else {
-      this.collection.push(pokemonObj)
+      this.collection.push(pokemonObj)  // Else push to collection
     }
   }
   else {
-    console.log(`You do not have enough pokeballs to catch this Pokemon.`)
+    console.log(`You do not have enough pokeballs to catch this Pokemon.`) // If not enough pokeballs, show message
   }
 }
 
@@ -433,6 +441,7 @@ Solve Exercise 20 here:
 */
 
 game.catchPokemon = function(nameOfPokemon) {
+
   // This function checks if the name is an existing object in pokemon 
   const checkName = () => {
     for (let monster of pokemon) {
@@ -448,7 +457,7 @@ game.catchPokemon = function(nameOfPokemon) {
   const checkItems = () => {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].name === 'pokeball') {
-        return this.items[i]
+        return this.items[i];
       }
     }
   }
@@ -514,25 +523,29 @@ Log the object when it's constructed.
 Solve Exercise 21 here:
 */
 
-// pseudo-code:
-// create a new-object with keys that hold arrays
-// each key will be named after an existing pokemon 'type' (i.e grass, fire, water...)
+// This object will hold the new types and their matching pokemon objects
+const typeCollector = {}; 
 
-// go through each pokemon-obj in the pokemon array,
-//     for each pokemon-obj, look at the key 'type'
-//         if the value of 'type' matches a 'type' in new-object
-//             add this pokemon obj to that array
-//         if the value of 'type' is not in new-object
-//             add it as a key in new-object 
-//             add this pokemon-obj to that array
-
-const typeCollector = {};
-
-pokemon.forEach((monster) => {
-  if (monster.type in typeCollector === false) {
-    typeCollector[monster.type] = [];
+pokemon.forEach((monster) => {    // For each monster in Pokemon
+  if (monster.type in typeCollector === false) {    // If the monster's type is not in typeCollector
+    typeCollector[monster.type] = [];    // Create an array property with the type as the key name 
   }
-  typeCollector[monster.type].push(monster)
+  typeCollector[monster.type].push(monster)   // Add this monster to a type that matches
 })
 
 console.log(typeCollector);
+
+
+/*
+pseudo-code for Exercise 21:
+create a new-object with keys that hold arrays
+each key will be named after an existing pokemon 'type' (i.e grass, fire, water...)
+
+go through each pokemon-obj in the pokemon array,
+    for each pokemon-obj, look at the key 'type'
+        if the value of 'type' matches a 'type' in new-object
+            add this pokemon obj to that array
+        if the value of 'type' is not in new-object
+            add it as a key in new-object 
+            add this pokemon-obj to that array
+*/
