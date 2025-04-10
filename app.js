@@ -295,16 +295,16 @@ Solve Exercise 13 here:
 */
 
 const gymTally = {completed: 0, incomplete: 0}
-
+// This method looks at each gym and tallies them into the above object, completed (true) or incomplete (false)
 game.gymStatus = function() {
-    for (let location of this.gyms) {
-        if (location.completed === true) {
-            gymTally.completed++
-        }
-        else if (location.completed === false) {
-            gymTally.incomplete++
-        }
-    }
+    this.gyms.forEach(location => {
+      if (location.completed === true) {
+          gymTally.completed++
+      }
+      else if (location.completed === false) {
+          gymTally.incomplete++
+      }
+  })
 }
 
 game.gymStatus(game.gyms)
