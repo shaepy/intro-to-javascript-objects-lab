@@ -298,9 +298,9 @@ For example, if five gym objects have a value of `true` on their `completed` pro
 Solve Exercise 13 here:
 */
 
-const gymTally = {completed: 0, incomplete: 0}
-// This method looks at each gym and tallies them into the above object, completed (true) or incomplete (false)
+// This method looks at each gym and tallies them into the gymTally object, completed (true) or incomplete (false)
 game.gymStatus = function() {
+  const gymTally = {completed: 0, incomplete: 0}
     this.gyms.forEach(location => {
       if (location.completed === true) {
           gymTally.completed++
@@ -309,11 +309,10 @@ game.gymStatus = function() {
           gymTally.incomplete++
       }
   })
+  console.log(gymTally) // It will print the tally after calculating the total
 }
 
-game.gymStatus(game.gyms)
-
-console.log(gymTally)
+game.gymStatus()
 
 /*
 Exercise 14
