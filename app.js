@@ -30,6 +30,7 @@ future methods were executed. Unsure if this is a setting but certain logs might
 from methods created or called later in the code, which are meant for a future exercise.
 
 Example: sort() is called in Exercise 17 but also affects the party order in previous logs.
+
 ***************************************************************************************************
 */
 
@@ -443,16 +444,16 @@ Solve Exercise 19 here:
 // This function takes a pokemon object and checks if pokeballs are available
 game.catchPokemon = function(pokemonObj) {
   if (this.items[1].quantity > 0) {
-    this.items[1].quantity--   // Decrement a pokeball if so
+    this.items[1].quantity--            // Decrement a pokeball if so
     if (this.party.length < 6) { 
-      this.party.push(pokemonObj)   // Push to party if less than 6
+      this.party.push(pokemonObj)       // Push to party if less than 6
     }
     else {
       this.collection.push(pokemonObj)  // Else push to collection
     }
   }
   else {
-    console.log(`You do not have enough pokeballs to catch this Pokemon.`) // If not enough pokeballs, show message
+    console.log(`You do not have enough pokeballs to catch this Pokemon.`)  // If not enough pokeballs, show message
   }
 }
 
