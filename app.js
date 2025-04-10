@@ -19,6 +19,21 @@ const game = {
     ],
   }
 
+
+
+/* 
+***************************************************************************************************
+
+NOTE FOR ASSIGNMENT REVIEW: 
+I noticed while testing with the live server browser, the console would log the results as if
+future methods were executed. Unsure if this is a setting but certain logs might show these updates 
+from methods created or called later in the code, which are meant for a future exercise.
+
+Example: sort() is called in Exercise 17 but also affects the party order in previous logs.
+***************************************************************************************************
+*/
+
+
 // This prints all the pokemon
 // console.dir(pokemon, { maxArrayLength: null })
 
@@ -53,15 +68,16 @@ game.changeDifficulty = function(mode) {
   }
 }
 
+console.log('----------EXERCISE 3 RESULTS ----------')
 game.changeDifficulty('easy')
 
-console.log(game.difficulty)
+console.log(game.difficulty) // Result: EASY
 
 game.changeDifficulty('hARD')
 
-console.log(game.difficulty)
+console.log(game.difficulty) // Result: HARD
 
-game.changeDifficulty('sds')
+game.changeDifficulty('sds') // Result: 'That is not an available setting. Choose EASY, MEDIUM, or HARD.'
 
 /*
 Exercise 4
@@ -91,6 +107,7 @@ game.foundRandomPokemon();  // Call for 3 random picks
 game.foundRandomPokemon();
 game.foundRandomPokemon();
 
+console.log('----------EXERCISE 5 RESULTS ----------')
 console.log(game.party)
 
 /*
@@ -112,6 +129,7 @@ game.completeLevelsBelow = function(difficultyLevel) {
 
 game.completeLevelsBelow(3);
 
+console.log('----------EXERCISE 6 RESULTS ----------')
 console.log(game.gyms)
 
 /*
@@ -176,11 +194,10 @@ game.evolveStarterPokemon = function(){
   }
 }
 
+console.log('----------EXERCISE 7 RESULTS ----------')
 game.evolveStarterPokemon();
-
-game.evolveStarterPokemon();
-
-game.evolveStarterPokemon();
+// game.evolveStarterPokemon();
+// game.evolveStarterPokemon();
 
 console.log(game.party)
 
@@ -199,6 +216,7 @@ game.showParty = function(){
   }
 }
 
+console.log('----------EXERCISE 8 RESULTS ----------')
 game.showParty();
 
 /*
@@ -218,6 +236,7 @@ game.showStarterPokemon = function(){
   })
 }
 
+console.log('----------EXERCISE 9 RESULTS ----------')
 game.showStarterPokemon();
 
 /*
@@ -260,6 +279,7 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[22])
 
+console.log('----------EXERCISE 11 RESULTS ----------')
 console.log(game.items)
 
 /*
@@ -273,6 +293,7 @@ Solve Exercise 12 here:
 // Calling a previous method and setting the difficultyLevel to 6
 game.completeLevelsBelow(6);
 
+console.log('----------EXERCISE 12 RESULTS ----------')
 console.log(game.gyms)
 
 /*
@@ -312,6 +333,7 @@ game.gymStatus = function() {
   console.log(gymTally) // It will print the tally after calculating the total
 }
 
+console.log('----------EXERCISE 13 RESULTS ----------')
 game.gymStatus()
 
 /*
@@ -329,6 +351,7 @@ game.partyCount = function() {
     return game.party.length
 }
 
+console.log('----------EXERCISE 14 RESULTS ----------')
 console.log(game.partyCount())
 
 /*
@@ -342,6 +365,7 @@ Solve Exercise 15 here:
 // Calling a previous method and setting the difficultyLevel to 8
 game.completeLevelsBelow(8);
 
+console.log('----------EXERCISE 15 RESULTS ----------')
 console.log(game.gyms)
 
 /*
@@ -350,6 +374,7 @@ Exercise 16
 Solve Exercise 16 here:
 */
 
+console.log('----------EXERCISE 16 RESULTS ----------')
 console.log(game)
 
 /*
@@ -402,6 +427,7 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon(pokemon[96])
 
+console.log('----------EXERCISE 18 RESULTS ----------')
 console.log(game.items)
 
 /*
@@ -483,6 +509,7 @@ game.catchPokemon = function(nameOfPokemon) {
   }
 }
 
+console.log('----------EXERCISE 20 RESULTS ----------')
 game.catchPokemon('piKachu')
 
 game.catchPokemon('VULPIX')
@@ -532,8 +559,8 @@ pokemon.forEach((monster) => {    // For each monster in Pokemon
   typeCollector[monster.type].push(monster)   // Add this monster to a type that matches
 })
 
+console.log('----------EXERCISE 21 RESULTS ----------')
 console.log(typeCollector);
-
 
 /*
 pseudo-code for Exercise 21:
