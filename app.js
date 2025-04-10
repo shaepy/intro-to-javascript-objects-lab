@@ -147,28 +147,30 @@ const setStarterPokemon = () => {
   }
 }
 
+// Call the function to fill up the pokemonEvolutions object
 setStarterPokemon();
 
 console.log(pokemonEvolutions)
 
-// This method evolves the current starter Pokemon in game.party up to its final evolution
+/* This method evolves any starter Pokemon in your party, up to its Final evolution.
+ It will look at all the monsters in your party, and will evolve any that are starterPokemons */
 game.evolveStarterPokemon = function(){
   for (let monster of this.party) {
-    if (pokemonEvolutions.starterPokemon.includes(monster)) { // if the pokemon is a starter pokemon, find it and evolve it
+    if (pokemonEvolutions.starterPokemon.includes(monster)) { // If the Pokemon is a starterPokemon, find it and evolve it.
       for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {
         if (monster === pokemonEvolutions.starterPokemon[i]) { 
           this.party.splice(0, 1, pokemonEvolutions.starterNextEvolve[i]) 
         } 
       }
     }
-    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) { // if it is a next evolution, find it and evolve it
+    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) { // If the Pokemon is a nextEvolve starter, find it and evolve it
       for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {
         if (monster === pokemonEvolutions.starterNextEvolve[i]) {
           this.party.splice(0, 1, pokemonEvolutions.starterFinalEvolve[i]) 
         } 
       }
     }
-    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) { // if it is at final evolution, show message
+    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) { // If it is at finalEvolve, show this message.
       console.log('This Pokemon is already at the final evolution.')
     }
   }
@@ -433,21 +435,21 @@ Solve Exercise 20 here:
 */
 
 game.catchPokemon = function(nameOfPokemon) {
-  // this function checks if this name is an existing object in pokemon 
+  // This function checks if the name is an existing object in pokemon 
   const checkName = () => {
     for (let monster of pokemon) {
       if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        return monster;  // return the object if there is a match
+        return monster;  // Return the object if there is a match
       }
     }
   }
-   // call the function and save the value to realPokemon
+   // Call the function and save the value to realPokemon
   const realPokemon = checkName();
-   // check if realPokemon is empty or not
+   // Check if realPokemon is empty or not
   if (realPokemon !== undefined) {
-    if (this.items[1].quantity > 0) {       // if pokeballs is greater than 0
-      this.items[1].quantity--           // decrement a pokeball from items
-      if (this.party.length < 6) {    // check if the party is full. if not, then add to party. else, add to collection
+    if (this.items[1].quantity > 0) {       // If pokeballs is greater than 0
+      this.items[1].quantity--           // Decrement a pokeball from items
+      if (this.party.length < 6) {    // Check if the party is full. If not, then add to party. Else, add to collection
         this.party.push(realPokemon)
       }
       else {
@@ -455,11 +457,11 @@ game.catchPokemon = function(nameOfPokemon) {
       }
     }
     else { 
-      console.log('You do not have enough pokeballs to catch this Pokemon.') // print this if pokeballs is less than or equals 0
+      console.log('You do not have enough pokeballs to catch this Pokemon.') // Print this if pokeballs is less than or equals 0
     }
   }
   else {
-    console.log('This Pokemon does not exist. Please try again.') // print this if no match for the pokemon is found
+    console.log('This Pokemon does not exist. Please try again.') // Print this if no match for the pokemon is found
   }
 }
 
