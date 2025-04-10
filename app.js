@@ -39,10 +39,6 @@ Solve Exercise 3 here:
 // This object determines the difficulty based on a string that is either 'easy', 'medium', or 'hard'.
 game.difficulty = '';
 
-// game.catchPokemon = function(pokemonObj) {
-//   this.party.push(pokemonObj)
-// }
-
 // This function takes in a mode as a string and changes the difficulty if it matches with a setting
 game.changeDifficulty = function(mode) {
   let selectedMode = mode.toUpperCase()
@@ -58,9 +54,11 @@ game.changeDifficulty = function(mode) {
 }
 
 game.changeDifficulty('easy')
+
 console.log(game.difficulty)
 
 game.changeDifficulty('HARD')
+
 console.log(game.difficulty)
 
 game.changeDifficulty('sds')
@@ -93,7 +91,7 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-// difficultyLevel takes a in a number and this method sets each gym's completed from false to true, for all levels below this number
+// This method takes a number and sets each gym's completed from false to true, for all levels below the number
 game.completeLevelsBelow = function(difficultyLevel) {
   this.gyms.forEach(location => {
     if (location.difficulty < difficultyLevel) {
@@ -121,9 +119,9 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-// starterPokemon holds all the starter pokemons
+// This array holds all the starter pokemons
 const starterPokemon = [pokemon[0], pokemon[3], pokemon[6], pokemon[24]]
-// starterEvolution holds the evolved counterparts
+// This array holds the evolved counterparts
 const starterEvolutions = [pokemon[1], pokemon[4], pokemon[7], pokemon[25]]
 
 // This method evolves the current starter Pokemon in game.party
@@ -155,7 +153,7 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
-// This function will log the name of each Pokemon in your party and its corresponding position.
+// This function will log the name of each Pokemon in the party and its corresponding position.
 game.showParty = function(){
   for (let i = 0; i < game.party.length; i++) {
     console.log(`Party Position ${i + 1}: `, game.party[i].name)
@@ -200,8 +198,6 @@ game.catchPokemon = function(pokemonObj) {
 }
 
 game.catchPokemon(pokemon[64])
-
-//console.log(game)
 
 /*
 Exercise 11
