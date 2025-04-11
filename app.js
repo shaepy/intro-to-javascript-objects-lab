@@ -498,35 +498,17 @@ Solve Exercise 20 here:
 
 game.catchPokemon = function(nameOfPokemon) {
   // This function checks if the name is an existing object in pokemon 
-  const checkName = () => {
-    for (let monster of pokemon) {
-      if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        // Return the object if there is a match
-        return monster;           
-      }
-    }
-  }
-  // Call the function and save it
-  const realPokemon = checkName();
-
+  const realPokemon = pokemon.find(p => p.name.toLowerCase() === nameOfPokemon.toLowerCase());
   // This function checks which index pokeballs is in
-  const checkItems = () => {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === 'pokeball') {
-        return this.items[i];
-      }
-    }
-  }
-  // Call the function and save it
-  const pokeballItemSlot = checkItems();
+  const itemPokeballs = this.items.find(item => item.name === 'pokeball');
 
    // Check if realPokemon has returned something
   if (realPokemon !== undefined) {
-    // If pokeballs is greater than 0, decrement a pokeball from items
-    if (pokeballItemSlot.quantity > 0) {         
-      pokeballItemSlot.quantity--             
-      console.log(`You threw a Pokeball. You have ${pokeballItemSlot.quantity} Pokeballs remaining.`)
-      // Check if the party is full. If not, add to party. 
+    // And if pokeballs is greater than 0, decrement a pokeball from items
+    if (itemPokeballs.quantity > 0) {         
+      itemPokeballs.quantity--             
+      console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
+      // Check if the party is full. if not, add to party
       if (this.party.length < 6) {               
         this.party.push(realPokemon)
         console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} is now in your party.`)
