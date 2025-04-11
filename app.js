@@ -262,7 +262,7 @@ console.log('-------------------- EXERCISE 9 RESULTS --------------------')
 // This method will log all the Pokemons available in the game if the 'starter' property is true.
 game.showStarterPokemon = function(){
   pokemon.forEach(pokemonObj => {
-    if (pokemonObj.starter === true) {
+    if (pokemonObj.starter) {
       console.log(`${pokemonObj.name} is a starter pokemon.`)
   }
   })
