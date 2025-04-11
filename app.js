@@ -28,7 +28,9 @@ NOTE FOR ASSIGNMENT/PEER REVIEW:
 read the console messages that are logged through the methods in each exercise. 
 
 * Note that although .sort() is not yet called until Exercise 17, the earlier logs for game.party 
-will still show them sorted by HP descending when using the browser console. 
+will still show them sorted by HP descending when using the browser console. This happens also when
+logging the game.inventory or game.party at an earlier part of the code, but logs will display as if 
+later methods have already been executed.
 
 ********************************************************************************************************
 */
@@ -40,7 +42,7 @@ will still show them sorted by HP descending when using the browser console.
 // console.log('Exercise 1: ', pokemon[58].name)
 
 // Exercise 2
-console.log('----------EXERCISE 2 RESULTS ----------')
+console.log('---------- EXERCISE 2 RESULTS ----------')
 console.log('Game Menu: ', game)
 
 /*
@@ -60,7 +62,7 @@ game.changeDifficulty = function(mode) {
   let selectedMode = mode.toUpperCase()
   const difficultySettings = ['EASY', 'MEDIUM', 'HARD']
 
-// If the mode is an option in Settings, change the difficulty, and print the current difficulty
+// If the mode is an option in Settings, change the difficulty (dot notation reassign), and print the current difficulty
   if (difficultySettings.includes(selectedMode)) {                         
     this.difficulty = selectedMode                                         
     console.log(`The current difficulty is set to ${selectedMode}.`)       
@@ -70,7 +72,7 @@ game.changeDifficulty = function(mode) {
   }
 }
 
-console.log('----------EXERCISE 3 RESULTS ----------')
+console.log('---------- XERCISE 3 RESULTS ----------')
 game.changeDifficulty('easy')
 game.changeDifficulty('hARD')
 game.changeDifficulty('sds')
@@ -85,7 +87,11 @@ Solve Exercise 4 here:
 
 */
 
-game.party.push(pokemon[24])  // I choose Pikachu
+// I choose Pikachu using .push()
+game.party.push(pokemon[24])  
+
+console.log('---------- EXERCISE 4 RESULTS ----------')
+console.log(`I choose you, ${pokemon[24].name}!`)
 
 /*
 
@@ -96,27 +102,25 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-// This method makes a random number within the pokemon array and pushes a pokemon to the party
+// This method makes a random number within the pokemon array and assigns that random number to a pokemon index
 game.findRandomPokemon = function(){
   const randomNum = Math.floor(Math.random() * pokemon.length);
   const randomPokemon = pokemon[randomNum]
-
-  // This checks to see if the party is full, and adds to party if not
+  // This checks to see if the party is full, and adds to party with .push() if not
   if (this.party.length < 6) {            
     this.party.push(randomPokemon)          
     console.log(`Wow! You have found a wild ${randomPokemon.name}. Check your party.`)
   }
-
-  // This will push the Pokemon to collection if party is full
+  // This will .push() the Pokemon to collection if party is full
   else { 
     this.collection.push(randomPokemon)      
     console.log(`Wow! You have found a wild ${randomPokemon.name}. Check your collection.`)
   }
 }
 
-console.log('----------EXERCISE 5 RESULTS ----------')
+console.log('---------- EXERCISE 5 RESULTS ----------')
 game.findRandomPokemon();         // Call method for random Pokemon
-game.findRandomPokemon();         // Re-save to refresh browser console and select different random Pokemon
+game.findRandomPokemon();         // Re-save to reload browser console and select different random Pokemon
 game.findRandomPokemon();
 
 console.log('Party: ', game.party)
@@ -140,7 +144,7 @@ game.completeLevelsBelow = function(difficultyLevel) {
   })
 }
 
-console.log('----------EXERCISE 6 RESULTS ----------')
+console.log('---------- EXERCISE 6 RESULTS ----------')
 game.completeLevelsBelow(3);
 
 /*
@@ -160,22 +164,22 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-console.log('----------EXERCISE 7 RESULTS ----------')
+console.log('---------- EXERCISE 7 RESULTS ----------')
 
 // This object holds starter Pokemon and their paired evolutions
 let pokemonEvolutions = {
-  starterPokemon: [],
-  starterNextEvolve: [],
-  starterFinalEvolve: []
+  starterBaseForm: [],
+  starterFirstEvolution: [],
+  starterSecondEvolution: []
 }
 
-// This function fills up the pokemonEvolutions object based on which Pokemon have starter: true
+// This function dynamically fills up the pokemonEvolutions object based on which Pokemon have starter: true
 const setStarterPokemon = () => {
   for (let i = 0; i < pokemon.length; i++) {
     if (pokemon[i].starter === true) {
-      pokemonEvolutions.starterPokemon.push(pokemon[i])
-      pokemonEvolutions.starterNextEvolve.push(pokemon[i+1])
-      pokemonEvolutions.starterFinalEvolve.push(pokemon[i+2])
+      pokemonEvolutions.starterBaseForm.push(pokemon[i])
+      pokemonEvolutions.starterFirstEvolution.push(pokemon[i+1])
+      pokemonEvolutions.starterSecondEvolution.push(pokemon[i+2])
     }
   }
 }
@@ -186,7 +190,7 @@ setStarterPokemon();
 console.log(pokemonEvolutions)
 
 /* This method below evolves any starter Pokemon in your party, up to its Final evolution.
- It will look at all the monsters in your party, and will evolve any that are starterPokemons 
+ It will look at all the monsters in your party, and will evolve any that are starter Pokemons 
  I used a for loop so we can place 'x' as the position to splice. */
  
 game.evolveStarterPokemon = function(){
@@ -194,26 +198,26 @@ game.evolveStarterPokemon = function(){
   for (let x = 0; x < this.party.length; x++) {                                  
     const monster = this.party[x]
 
-    // This checks if the Pokemon is a starterPokemon, which one is it, and replaces it with the corresponding starterNextEvolve
-    if (pokemonEvolutions.starterPokemon.includes(monster)) {                      
-      for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {                      
-        if (monster === pokemonEvolutions.starterPokemon[i]) {                   
-          this.party.splice(x, 1, pokemonEvolutions.starterNextEvolve[i])         
-          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterNextEvolve[i].name}!`)
+    // This checks if the Pokemon is a starterBaseForm, which one is it, and replaces it with the corresponding starterFirstEvolution
+    if (pokemonEvolutions.starterBaseForm.includes(monster)) {                      
+      for (let i = 0; i < pokemonEvolutions.starterBaseForm.length; i++) {                      
+        if (monster === pokemonEvolutions.starterBaseForm[i]) {                   
+          this.party.splice(x, 1, pokemonEvolutions.starterFirstEvolution[i])         
+          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFirstEvolution[i].name}!`)
         } 
       } 
     }
-    // This checks if the Pokemon is a nextEvolve starter, which one is it, and replaces it with the corresponding starterFinalEvolve
-    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) {              
-      for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {       
-        if (monster === pokemonEvolutions.starterNextEvolve[i]) {
-          this.party.splice(x, 1, pokemonEvolutions.starterFinalEvolve[i]) 
-          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFinalEvolve[i].name}!`)
+    // This checks if the Pokemon is a starterFirstEvolution, which one is it, and replaces it with the corresponding starterSecondEvolution
+    else if (pokemonEvolutions.starterFirstEvolution.includes(monster)) {              
+      for (let i = 0; i < pokemonEvolutions.starterFirstEvolution.length; i++) {       
+        if (monster === pokemonEvolutions.starterFirstEvolution[i]) {
+          this.party.splice(x, 1, pokemonEvolutions.starterSecondEvolution[i]) 
+          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterSecondEvolution[i].name}!`)
         } 
       }
     }
-    // This checks if it's already at finalEvolve, and prints a message stating so.
-    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) {           
+    // This checks if it's already at starterSecondEvolution, and prints a message stating so.
+    else if (pokemonEvolutions.starterSecondEvolution.includes(monster)) {           
       console.log(`Your ${monster.name} is already at the final evolution.`)            
     }
   }
@@ -223,7 +227,7 @@ game.evolveStarterPokemon();
 game.evolveStarterPokemon();
 //game.evolveStarterPokemon();
 
-console.log(game.party)
+console.log('Party: ', game.party)
 
 /*
 
@@ -234,7 +238,7 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
-console.log('----------EXERCISE 8 RESULTS ----------')
+console.log('---------- EXERCISE 8 RESULTS ----------')
 
 // This method will log the name of each Pokemon in the party and its corresponding position.
 game.viewParty = function(){
@@ -253,9 +257,9 @@ Exercise 9
 
 Solve Exercise 9 here:
 */ 
-console.log('----------EXERCISE 9 RESULTS ----------')
+console.log('---------- EXERCISE 9 RESULTS ----------')
 
-// This method will log all the starter Pokemons available in the game.
+// This method will log all the Pokemons available in the game if the 'starter' property is true.
 game.showStarterPokemon = function(){
   pokemon.forEach(monster => {
     if (monster.starter === true) {
@@ -279,7 +283,6 @@ After writing this method, call it and pass in a Pokemon object of your choice f
 Solve Exercise 10 here:
 */
 
-// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj)
 }
@@ -300,13 +303,23 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
+console.log('---------- EXERCISE 11 RESULTS ----------')
+
 game.catchPokemon = function(pokemonObj) {
+    // This method checks and returns which index pokeballs is in
+    const itemPokeballs = this.items.find(item => item.name === 'pokeball')
+    // This will decrement the pokeballs quantity by 1
+    itemPokeballs.quantity--
+    // Add to party
     this.party.push(pokemonObj)
-    this.items[1].quantity--
+    console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
+    console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} is now in your party.`)
 }
 
 game.catchPokemon(pokemon[150])
-// console.log(game.items)
+
+console.log('Party: ', game.party)
+console.log('Inventory: ', game.items)
 
 /*
 
@@ -317,7 +330,7 @@ Exercise 12
 Solve Exercise 12 here:
 */
 
-console.log('----------EXERCISE 12 RESULTS ----------')
+console.log('---------- EXERCISE 12 RESULTS ----------')
 // Calling a previous method and setting the difficultyLevel to 6
 game.completeLevelsBelow(6);
 
@@ -360,7 +373,7 @@ game.gymStatus = function() {
   console.log('Gym Tally: ', gymTally) 
 }
 
-console.log('----------EXERCISE 13 RESULTS ----------')
+console.log('---------- EXERCISE 13 RESULTS ----------')
 game.gymStatus()
 
 /*
@@ -375,15 +388,15 @@ This method should:
 Solve Exercise 14 here:
 */
 
-console.log('----------EXERCISE 14 RESULTS ----------')
+console.log('---------- EXERCISE 14 RESULTS ----------')
 
 // This method counts the number of Pokemon in the party and returns that value
 game.partyCount = function() {
     return game.party.length
 }
 
-const currentPartyNumber = game.partyCount()
 // Printing this to console for testing
+const currentPartyNumber = game.partyCount()
 console.log(`You have ${currentPartyNumber} Pokemon in your party.`)    
 
 /*
@@ -395,7 +408,7 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
-console.log('----------EXERCISE 15 RESULTS ----------')
+console.log('---------- EXERCISE 15 RESULTS ----------')
 // Calling a previous method and setting the difficultyLevel to 8
 game.completeLevelsBelow(8);
 console.log('Gyms: ', game.gyms)
@@ -408,7 +421,7 @@ Exercise 16
 Solve Exercise 16 here:
 */
 
-console.log('----------EXERCISE 16 RESULTS ----------')
+console.log('---------- EXERCISE 16 RESULTS ----------')
 console.log('Game Menu: ', game)
 
 /*
@@ -419,7 +432,6 @@ Exercise 17
 
 Solve Exercise 17 here:
 */
-
 
 // This sorts the party by descending order of highest HP first by passing two arguments.
 // It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 
@@ -448,7 +460,10 @@ Solve Exercise 18 here:
 game.collection = [];
 
 game.catchPokemon = function(pokemonObj) {
-  this.items[1].quantity--
+    // This method checks and returns which index pokeballs is in
+    const itemPokeballs = this.items.find(item => item.name === 'pokeball')
+    itemPokeballs.quantity--
+    console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
     // Check if the party is full. if not, add to party
     if (this.party.length < 6) {               
       this.party.push(pokemonObj)
@@ -461,9 +476,10 @@ game.catchPokemon = function(pokemonObj) {
     }
 }
 
-console.log('----------EXERCISE 18 RESULTS ----------')
+console.log('---------- EXERCISE 18 RESULTS ----------')
 game.catchPokemon(pokemon[129])
 game.viewParty()
+console.log('Inventory: ', game.items)
 
 /*
 
@@ -500,7 +516,7 @@ game.catchPokemon = function(pokemonObj) {
   }
 }
 
-console.log('----------EXERCISE 19 RESULTS ----------')
+console.log('---------- EXERCISE 19 RESULTS ----------')
 game.catchPokemon(pokemon[11])
 console.log('Collection: ', game.collection)
 console.log('Inventory: ', game.items)
@@ -550,15 +566,15 @@ game.catchPokemon = function(name) {
   }
 }
 
-console.log('----------EXERCISE 20 RESULTS ----------')
+console.log('---------- EXERCISE 20 RESULTS ----------')
 // Throw until you're out of pokeballs!
 game.catchPokemon('ocaptainmycaptaIn')
 game.catchPokemon('SNORLAX')
 game.catchPokemon('Gdsgkabibakumomo')
 game.catchPokemon('jigglypuff')
 game.catchPokemon('ditto')
-game.catchPokemon('Ninetales')
-game.catchPokemon('Staryu')
+game.catchPokemon('tentaCRUEL')
+game.catchPokemon('GENGAR')
 game.catchPokemon('Poliwag')
 game.catchPokemon('MaGIKArp')
 game.catchPokemon('Staryu')
@@ -606,8 +622,8 @@ pokemon.forEach((monster) => {
   typeCollector[monster.type].push(monster)             
 })
 
-console.log('----------EXERCISE 21 RESULTS ----------')
-console.log(typeCollector);
+console.log('---------- EXERCISE 21 RESULTS ----------')
+console.log('Pokédex by Type: ', typeCollector);
 
 
 /*
