@@ -41,7 +41,7 @@ will still show them sorted by HP descending when using the browser console.
 
 // Exercise 2
 console.log('----------EXERCISE 2 RESULTS ----------')
-console.log(game)
+console.log('Game Menu: ', game)
 
 /*
 
@@ -119,7 +119,7 @@ game.findRandomPokemon();         // Call method for random Pokemon
 game.findRandomPokemon();         // Re-save to refresh browser console and select different random Pokemon
 game.findRandomPokemon();
 
-console.log(game.party)
+console.log('Party: ', game.party)
 
 /*
 
@@ -357,7 +357,7 @@ game.gymStatus = function() {
       }
   })
   // This will print the tally after calculating the total
-  console.log(gymTally) 
+  console.log('Gym Tally: ', gymTally) 
 }
 
 console.log('----------EXERCISE 13 RESULTS ----------')
@@ -398,8 +398,7 @@ Solve Exercise 15 here:
 console.log('----------EXERCISE 15 RESULTS ----------')
 // Calling a previous method and setting the difficultyLevel to 8
 game.completeLevelsBelow(8);
-
-console.log(game.gyms)
+console.log('Gyms: ', game.gyms)
 
 /*
 
@@ -410,7 +409,7 @@ Solve Exercise 16 here:
 */
 
 console.log('----------EXERCISE 16 RESULTS ----------')
-console.log(game)
+console.log('Game Menu: ', game)
 
 /*
 
@@ -450,16 +449,21 @@ game.collection = [];
 
 game.catchPokemon = function(pokemonObj) {
   this.items[1].quantity--
-  if (game.party.length < 6) {
-    this.party.push(pokemonObj)
-  }
-  else {
-    this.collection.push(pokemonObj)
-  }
+    // Check if the party is full. if not, add to party
+    if (this.party.length < 6) {               
+      this.party.push(pokemonObj)
+      console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} is now in your party.`)
+    }
+    // Else, add to collection
+    else {
+      this.collection.push(pokemonObj)
+      console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} has been added to your collection.`)
+    }
 }
 
+console.log('----------EXERCISE 18 RESULTS ----------')
 game.catchPokemon(pokemon[129])
-// console.log(game.items)
+game.viewParty()
 
 /*
 
@@ -472,19 +476,35 @@ Solve Exercise 19 here:
 */
 
 game.catchPokemon = function(pokemonObj) {
-  if (this.items[1].quantity > 0) {
-    this.items[1].quantity--            
-    if (this.party.length < 6) { 
-      this.party.push(pokemonObj)      
+  // This method checks and returns which index pokeballs is in
+  const itemPokeballs = this.items.find(item => item.name === 'pokeball');
+
+  // If pokeballs is greater than 0, decrement a pokeball from items
+  if (itemPokeballs.quantity > 0) {         
+    itemPokeballs.quantity--             
+    console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
+    // Check if the party is full. if not, add to party
+    if (this.party.length < 6) {               
+      this.party.push(pokemonObj)
+      console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} is now in your party.`)
     }
+    // Else, add to collection
     else {
-      this.collection.push(pokemonObj)  
+      this.collection.push(pokemonObj)
+      console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} has been added to your collection.`)
     }
   }
-  else {
-    console.log(`You do not have enough pokeballs to catch this Pokemon.`)  
+  // Print this if pokeballs is less than or equals 0
+  else { 
+    console.log('You are out of Pokeballs.')      
   }
 }
+
+console.log('----------EXERCISE 19 RESULTS ----------')
+game.catchPokemon(pokemon[11])
+console.log('Collection: ', game.collection)
+console.log('Inventory: ', game.items)
+
 
 /*
 
@@ -537,15 +557,16 @@ game.catchPokemon('SNORLAX')
 game.catchPokemon('Gdsgkabibakumomo')
 game.catchPokemon('jigglypuff')
 game.catchPokemon('ditto')
-game.catchPokemon('MaGIKArp')
-game.catchPokemon('VULPIX')
 game.catchPokemon('Ninetales')
+game.catchPokemon('Staryu')
 game.catchPokemon('Poliwag')
-game.catchPokemon('Butterfree')
+game.catchPokemon('MaGIKArp')
+game.catchPokemon('Staryu')
+game.catchPokemon('VULPIX')
 
-console.log(game.collection)
+console.log('Collection: ', game.collection)
 
-console.log(game.items)
+console.log('Inventory: ', game.items)
 
 /*
 
