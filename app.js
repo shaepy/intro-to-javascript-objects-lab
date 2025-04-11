@@ -28,7 +28,7 @@ NOTE FOR ASSIGNMENT/PEER REVIEW:
 read the console messages that are logged through the methods in each exercise. 
 
 * Note that although .sort() is not yet called until Exercise 17, the earlier logs for game.party 
-will still show them sorted by HP descending. 
+will still show them sorted by HP descending when using the browser console. 
 
 ********************************************************************************************************
 */
