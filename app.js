@@ -310,9 +310,9 @@ game.catchPokemon = function(pokemonObj) {
     const itemPokeballs = this.items.find(item => item.name === 'pokeball')
     // This will decrement the pokeballs quantity by 1
     itemPokeballs.quantity--
+    console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
     // Add to party
     this.party.push(pokemonObj)
-    console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
     console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} is now in your party.`)
 }
 
