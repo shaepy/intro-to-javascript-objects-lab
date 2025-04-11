@@ -203,7 +203,8 @@ game.evolveStarterPokemon = function(){
           console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterNextEvolve[i].name}!`)
         } 
       } 
-    }     // This checks if the Pokemon is a nextEvolve starter, which one is it, and replaces it with the corresponding starterFinalEvolve
+    }
+    // This checks if the Pokemon is a nextEvolve starter, which one is it, and replaces it with the corresponding starterFinalEvolve
     else if (pokemonEvolutions.starterNextEvolve.includes(monster)) {              
       for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {       
         if (monster === pokemonEvolutions.starterNextEvolve[i]) {
@@ -211,7 +212,8 @@ game.evolveStarterPokemon = function(){
           console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFinalEvolve[i].name}!`)
         } 
       }
-    }     // This checks if it's already at finalEvolve, and prints a message stating so.
+    }
+    // This checks if it's already at finalEvolve, and prints a message stating so.
     else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) {           
       console.log(`Your ${monster.name} is already at the final evolution.`)            
     }
@@ -299,7 +301,6 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
-// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj)
     this.items[1].quantity--
@@ -356,7 +357,8 @@ game.gymStatus = function() {
           gymTally.incomplete++
       }
   })
-  console.log(gymTally) // It will print the tally after calculating the total
+  // This will print the tally after calculating the total
+  console.log(gymTally) 
 }
 
 console.log('----------EXERCISE 13 RESULTS ----------')
@@ -401,8 +403,10 @@ game.completeLevelsBelow(8);
 console.log(game.gyms)
 
 /*
+
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
+
 Solve Exercise 16 here:
 */
 
@@ -410,6 +414,7 @@ console.log('----------EXERCISE 16 RESULTS ----------')
 console.log(game)
 
 /*
+
 Exercise 17
 1. Arrange the Pokémon in `game.party` by their HP. The one with the highest HP should come first.
 2. You'll need to use the `.sort()` method. How does the compare function work in sorting numbers?
@@ -417,14 +422,13 @@ Exercise 17
 Solve Exercise 17 here:
 */
 
-/* 
-This sorts the party by descending order of highest HP first by passing two arguments.
-  It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 
-  */
-// game.party.sort(function(a,b){
-//     return b.hp - a.hp
-//   }
-// )
+
+// This sorts the party by descending order of highest HP first by passing two arguments.
+// It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 
+game.party.sort(function(a,b){
+    return b.hp - a.hp
+  }
+)
 
 /*
 Exercise 18
@@ -443,10 +447,8 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 18 here:
 */
 
-
 game.collection = [];
 
-// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
   this.items[1].quantity--
   if (game.party.length < 6) {
@@ -461,6 +463,7 @@ game.catchPokemon(pokemon[129])
 // console.log(game.items)
 
 /*
+
 Exercise 19
 Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
 Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
@@ -469,7 +472,6 @@ Also, ensure that the Pokemon isn't added to the `game.party` or the `game.colle
 Solve Exercise 19 here:
 */
 
-// NOTE: I updated this method in Exercise 20.
 game.catchPokemon = function(pokemonObj) {
   if (this.items[1].quantity > 0) {
     this.items[1].quantity--            
@@ -486,6 +488,7 @@ game.catchPokemon = function(pokemonObj) {
 }
 
 /*
+
 Exercise 20
 Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify is so that you can just pass in the name of a Pokemon instead of an entire object, and the method will look up the Pokemon from the data set for you.
 The string passed in should be allowed to be any case (for example, if the string 'PiKacHU' is passed to the function, it should match to 'Pikachu' in the data set). 
@@ -524,7 +527,6 @@ game.catchPokemon = function(nameOfPokemon) {
     if (pokeballItemSlot.quantity > 0) {         
       pokeballItemSlot.quantity--             
       console.log(`You threw a Pokeball. You have ${pokeballItemSlot.quantity} Pokeballs remaining.`)
-
       // Check if the party is full. If not, add to party. 
       if (this.party.length < 6) {               
         this.party.push(realPokemon)
@@ -536,13 +538,11 @@ game.catchPokemon = function(nameOfPokemon) {
         console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} has been added to your collection.`)
       }
     }
-
     // Print this if pokeballs is less than or equals 0
     else { 
       console.log('You are out of Pokeballs.')      
     }
   }
-  
   // Print this if no match for the pokemon is found
   else {
     console.log('This Pokemon does not exist. Please try again.')      
