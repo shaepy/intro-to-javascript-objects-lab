@@ -24,9 +24,11 @@ const game = {
 ********************************************************************************************************
 
 NOTE FOR ASSIGNMENT/PEER REVIEW: 
-Recommended to use the console in browser instead of the node app.js from VS terminal, to easily 
-read the console messages that are logged through the methods in each exercise. The methods log what
-actions are taken place as they are performed.
+* Recommended to use the console in browser instead of the node app.js from VS terminal, to easily 
+read the console messages that are logged through the methods in each exercise. 
+
+* Note that although .sort() is not yet called until Exercise 17, the earlier logs for game.party 
+will still show them sorted by HP descending. 
 
 ********************************************************************************************************
 */
