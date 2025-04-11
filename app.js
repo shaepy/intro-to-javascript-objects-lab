@@ -516,9 +516,9 @@ If there is not a match, then return a string noting that the selected Pokemon d
 Solve Exercise 20 here:
 */
 
-game.catchPokemon = function(nameOfPokemon) {
+game.catchPokemon = function(name) {
   // This method checks and returns if the name is an existing object in pokemon
-  const pokemonObj = pokemon.find(p => p.name.toLowerCase() === nameOfPokemon.toLowerCase());
+  const pokemonObj = pokemon.find(p => p.name.toLowerCase() === name.toLowerCase());
   // This method checks and returns which index pokeballs is in
   const itemPokeballs = this.items.find(item => item.name === 'pokeball');
 
