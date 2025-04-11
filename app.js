@@ -479,6 +479,8 @@ game.catchPokemon = function(pokemonObj) {
 console.log('-------------------- EXERCISE 18 RESULTS --------------------')
 game.catchPokemon(pokemon[129])
 game.viewParty()
+
+console.log('Party: ', game.party)
 console.log('Inventory: ', game.items)
 
 /*
@@ -583,6 +585,12 @@ game.catchPokemon('VULPIX')
 console.log('Collection: ', game.collection)
 
 console.log('Inventory: ', game.items)
+
+// Sorting collection by highest HP first
+game.collection.sort(function(a,b){
+  return b.hp - a.hp
+}
+)
 
 /*
 
