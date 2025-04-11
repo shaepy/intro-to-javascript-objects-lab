@@ -190,35 +190,35 @@ setStarterPokemon();
 console.log(pokemonEvolutions)
 
 /* This method below evolves any starter Pokemon in your party, up to its Final evolution.
- It will look at all the monsters in your party, and will evolve any that are starter Pokemons 
+ It will look at all the pokemonObjs in your party, and will evolve any that are starter Pokemons 
  I used a for loop so we can place 'x' as the position to splice. */
  
 game.evolveStarterPokemon = function(){
   // This looks at each Pokemon in the party
   for (let x = 0; x < this.party.length; x++) {                                  
-    const monster = this.party[x]
+    const pokemonObj = this.party[x]
 
     // This checks if the Pokemon is a starterBaseForm, which one is it, and replaces it with the corresponding starterFirstEvolution
-    if (pokemonEvolutions.starterBaseForm.includes(monster)) {                      
+    if (pokemonEvolutions.starterBaseForm.includes(pokemonObj)) {                      
       for (let i = 0; i < pokemonEvolutions.starterBaseForm.length; i++) {                      
-        if (monster === pokemonEvolutions.starterBaseForm[i]) {                   
+        if (pokemonObj === pokemonEvolutions.starterBaseForm[i]) {                   
           this.party.splice(x, 1, pokemonEvolutions.starterFirstEvolution[i])         
-          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFirstEvolution[i].name}!`)
+          console.log(`Your ${pokemonObj.name} has evolved into ${pokemonEvolutions.starterFirstEvolution[i].name}!`)
         } 
       } 
     }
     // This checks if the Pokemon is a starterFirstEvolution, which one is it, and replaces it with the corresponding starterSecondEvolution
-    else if (pokemonEvolutions.starterFirstEvolution.includes(monster)) {              
+    else if (pokemonEvolutions.starterFirstEvolution.includes(pokemonObj)) {              
       for (let i = 0; i < pokemonEvolutions.starterFirstEvolution.length; i++) {       
-        if (monster === pokemonEvolutions.starterFirstEvolution[i]) {
+        if (pokemonObj === pokemonEvolutions.starterFirstEvolution[i]) {
           this.party.splice(x, 1, pokemonEvolutions.starterSecondEvolution[i]) 
-          console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterSecondEvolution[i].name}!`)
+          console.log(`Your ${pokemonObj.name} has evolved into ${pokemonEvolutions.starterSecondEvolution[i].name}!`)
         } 
       }
     }
     // This checks if it's already at starterSecondEvolution, and prints a message stating so.
-    else if (pokemonEvolutions.starterSecondEvolution.includes(monster)) {           
-      console.log(`Your ${monster.name} is already at the final evolution.`)            
+    else if (pokemonEvolutions.starterSecondEvolution.includes(pokemonObj)) {           
+      console.log(`Your ${pokemonObj.name} is already at the final evolution.`)            
     }
   }
 }
@@ -261,9 +261,9 @@ console.log('-------------------- EXERCISE 9 RESULTS --------------------')
 
 // This method will log all the Pokemons available in the game if the 'starter' property is true.
 game.showStarterPokemon = function(){
-  pokemon.forEach(monster => {
-    if (monster.starter === true) {
-      console.log(`${monster.name} is a starter pokemon.`)
+  pokemon.forEach(pokemonObj => {
+    if (pokemonObj.starter === true) {
+      console.log(`${pokemonObj.name} is a starter pokemon.`)
   }
   })
 }
@@ -620,14 +620,14 @@ Solve Exercise 21 here:
 // This object will hold the new types and their matching pokemon objects
 const typeCollector = {}; 
 
-// For each monster in Pokemon,
-pokemon.forEach((monster) => {             
+// For each pokemonObj in Pokemon,
+pokemon.forEach((pokemonObj) => {             
   // If the Pokemon's type is not already in typeCollector, create a new array property with the type as the key name    
-  if (monster.type in typeCollector === false) {       
-    typeCollector[monster.type] = [];                   
+  if (pokemonObj.type in typeCollector === false) {       
+    typeCollector[pokemonObj.type] = [];                   
   }
-  // Add this monster to a type that matches
-  typeCollector[monster.type].push(monster)             
+  // Add this pokemonObj to a type that matches
+  typeCollector[pokemonObj.type].push(pokemonObj)             
 })
 
 console.log('-------------------- EXERCISE 21 RESULTS --------------------')
