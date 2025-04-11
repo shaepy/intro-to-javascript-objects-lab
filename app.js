@@ -176,7 +176,7 @@ const pokemonEvolutions = {
 // This function dynamically fills up the pokemonEvolutions object based on which Pokemon have starter: true
 const setStarterPokemon = () => {
   for (let i = 0; i < pokemon.length; i++) {
-    if (pokemon[i].starter === true) {
+    if (pokemon[i].starter === true && !pokemonEvolutions.starterBaseForm.includes(pokemon[i])) {
       pokemonEvolutions.starterBaseForm.push(pokemon[i])
       pokemonEvolutions.starterFirstEvolution.push(pokemon[i+1])
       pokemonEvolutions.starterSecondEvolution.push(pokemon[i+2])
