@@ -497,9 +497,9 @@ Solve Exercise 20 here:
 */
 
 game.catchPokemon = function(nameOfPokemon) {
-  // This function checks if the name is an existing object in pokemon 
+  // This function checks and returns if the name is an existing object in pokemon
   const realPokemon = pokemon.find(p => p.name.toLowerCase() === nameOfPokemon.toLowerCase());
-  // This function checks which index pokeballs is in
+  // This function checks and returns which index pokeballs is in
   const itemPokeballs = this.items.find(item => item.name === 'pokeball');
 
    // Check if realPokemon has returned something
