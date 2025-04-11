@@ -497,26 +497,26 @@ Solve Exercise 20 here:
 */
 
 game.catchPokemon = function(nameOfPokemon) {
-  // This function checks and returns if the name is an existing object in pokemon
-  const realPokemon = pokemon.find(p => p.name.toLowerCase() === nameOfPokemon.toLowerCase());
-  // This function checks and returns which index pokeballs is in
+  // This method checks and returns if the name is an existing object in pokemon
+  const pokemonObj = pokemon.find(p => p.name.toLowerCase() === nameOfPokemon.toLowerCase());
+  // This method checks and returns which index pokeballs is in
   const itemPokeballs = this.items.find(item => item.name === 'pokeball');
 
-   // Check if realPokemon has returned something
-  if (realPokemon !== undefined) {
+   // Check if pokemonObj has returned something
+  if (pokemonObj !== undefined) {
     // And if pokeballs is greater than 0, decrement a pokeball from items
     if (itemPokeballs.quantity > 0) {         
       itemPokeballs.quantity--             
       console.log(`You threw a Pokeball. You have ${itemPokeballs.quantity} Pokeballs remaining.`)
       // Check if the party is full. if not, add to party
       if (this.party.length < 6) {               
-        this.party.push(realPokemon)
-        console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} is now in your party.`)
+        this.party.push(pokemonObj)
+        console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} is now in your party.`)
       }
       // Else, add to collection
       else {
-        this.collection.push(realPokemon)
-        console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} has been added to your collection.`)
+        this.collection.push(pokemonObj)
+        console.log(`You have captured ${pokemonObj.name}. ${pokemonObj.name} has been added to your collection.`)
       }
     }
     // Print this if pokeballs is less than or equals 0
