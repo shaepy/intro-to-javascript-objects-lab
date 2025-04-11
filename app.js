@@ -382,7 +382,8 @@ game.partyCount = function() {
 }
 
 const currentPartyNumber = game.partyCount()
-console.log(`You have ${currentPartyNumber} Pokemon in your party.`)    // Printing this to console for testing
+// Printing this to console for testing
+console.log(`You have ${currentPartyNumber} Pokemon in your party.`)    
 
 /*
 
@@ -498,7 +499,8 @@ game.catchPokemon = function(nameOfPokemon) {
   const checkName = () => {
     for (let monster of pokemon) {
       if (nameOfPokemon.toLowerCase() === monster.name.toLowerCase()) {
-        return monster;           // Return the object if there is a match
+        // Return the object if there is a match
+        return monster;           
       }
     }
   }
@@ -522,6 +524,7 @@ game.catchPokemon = function(nameOfPokemon) {
     if (pokeballItemSlot.quantity > 0) {         
       pokeballItemSlot.quantity--             
       console.log(`You threw a Pokeball. You have ${pokeballItemSlot.quantity} Pokeballs remaining.`)
+
       // Check if the party is full. If not, add to party. 
       if (this.party.length < 6) {               
         this.party.push(realPokemon)
@@ -533,11 +536,13 @@ game.catchPokemon = function(nameOfPokemon) {
         console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} has been added to your collection.`)
       }
     }
+
     // Print this if pokeballs is less than or equals 0
     else { 
       console.log('You are out of Pokeballs.')      
     }
   }
+  
   // Print this if no match for the pokemon is found
   else {
     console.log('This Pokemon does not exist. Please try again.')      
