@@ -23,16 +23,13 @@ const game = {
 /* 
 ********************************************************************************************************
 
-
 NOTE FOR ASSIGNMENT/PEER REVIEW: 
 Recommended to use the console in browser instead of the node app.js from VS terminal, to easily 
 read the console messages that are logged through the methods in each exercise. The methods log what
 actions are taken place as they are performed.
 
-
 ********************************************************************************************************
 */
-
 
 // This prints all the pokemon
 // console.dir(pokemon, { maxArrayLength: null })
