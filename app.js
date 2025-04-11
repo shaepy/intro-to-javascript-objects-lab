@@ -182,35 +182,40 @@ setStarterPokemon();
 
 console.log(pokemonEvolutions)
 
-/* This method evolves any starter Pokemon in your party, up to its Final evolution.
- It will look at all the monsters in your party, and will evolve any that are starterPokemons */
+/* This method below evolves any starter Pokemon in your party, up to its Final evolution.
+ It will look at all the monsters in your party, and will evolve any that are starterPokemons 
+ I used a for loop so we can place 'x' as the position to splice. */
+ 
 game.evolveStarterPokemon = function(){
-  for (let monster of this.party) {
-    if (pokemonEvolutions.starterPokemon.includes(monster)) {                    // If the Pokemon is a starterPokemon,
-      for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {        // find it and evolve it.
-        if (monster === pokemonEvolutions.starterPokemon[i]) { 
-          this.party.splice(0, 1, pokemonEvolutions.starterNextEvolve[i]) 
+  // This looks at each Pokemon in the party
+  for (let x = 0; x < this.party.length; x++) {                                  
+    const monster = this.party[x]
+    // This checks if the Pokemon is a starterPokemon, which one is it, and replaces it with the corresponding starterNextEvolve
+    if (pokemonEvolutions.starterPokemon.includes(monster)) {                      
+      for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {                      
+        if (monster === pokemonEvolutions.starterPokemon[i]) {                   
+          this.party.splice(x, 1, pokemonEvolutions.starterNextEvolve[i])         
           console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterNextEvolve[i].name}!`)
         } 
-      }
-    }
-    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) {            // If the Pokemon is a nextEvolve starter, 
-      for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {     // find it and evolve it.
+      } 
+    }     // This checks if the Pokemon is a nextEvolve starter, which one is it, and replaces it with the corresponding starterFinalEvolve
+    else if (pokemonEvolutions.starterNextEvolve.includes(monster)) {              
+      for (let i = 0; i < pokemonEvolutions.starterNextEvolve.length; i++) {       
         if (monster === pokemonEvolutions.starterNextEvolve[i]) {
-          this.party.splice(0, 1, pokemonEvolutions.starterFinalEvolve[i]) 
+          this.party.splice(x, 1, pokemonEvolutions.starterFinalEvolve[i]) 
           console.log(`Your ${monster.name} has evolved into ${pokemonEvolutions.starterFinalEvolve[i].name}!`)
         } 
       }
-    }
-    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) {           // If it is at finalEvolve,
-      console.log(`Your ${monster.name} is already at the final evolution.`)             // show this message.
+    }     // This checks if it's already at finalEvolve, and prints a message stating so.
+    else if (pokemonEvolutions.starterFinalEvolve.includes(monster)) {           
+      console.log(`Your ${monster.name} is already at the final evolution.`)            
     }
   }
 }
 
 game.evolveStarterPokemon();
-// game.evolveStarterPokemon();
-// game.evolveStarterPokemon();
+game.evolveStarterPokemon();
+//game.evolveStarterPokemon();
 
 console.log(game.party)
 
@@ -410,10 +415,10 @@ Solve Exercise 17 here:
 This sorts the party by descending order of highest HP first by passing two arguments.
   It will compare b - a, and sort before or after based on whether the difference is positive, negative, or 0 
   */
-game.party.sort(function(a,b){
-    return b.hp - a.hp
-  }
-)
+// game.party.sort(function(a,b){
+//     return b.hp - a.hp
+//   }
+// )
 
 /*
 Exercise 18
