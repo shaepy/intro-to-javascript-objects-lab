@@ -61,9 +61,10 @@ game.changeDifficulty = function(mode) {
   let selectedMode = mode.toUpperCase()
   const difficultySettings = ['EASY', 'MEDIUM', 'HARD']
 
-  if (difficultySettings.includes(selectedMode)) {                         // If the mode is an option in Settings
-    this.difficulty = selectedMode                                         // Change the difficulty
-    console.log(`The current difficulty is set to ${selectedMode}.`)       // and print the current difficulty
+// If the mode is an option in Settings, change the difficulty, and print the current difficulty
+  if (difficultySettings.includes(selectedMode)) {                         
+    this.difficulty = selectedMode                                         
+    console.log(`The current difficulty is set to ${selectedMode}.`)       
   }
   else {
     console.log('That is not an available setting. Choose EASY, MEDIUM, or HARD.')
@@ -100,13 +101,16 @@ Solve Exercise 5 here:
 game.findRandomPokemon = function(){
   const randomNum = Math.floor(Math.random() * pokemon.length);
   const randomPokemon = pokemon[randomNum]
-  
-  if (this.party.length < 6) {               // This checks to see if party is full
-    this.party.push(randomPokemon)           // Add to party if not
+
+  // This checks to see if the party is full, and adds to party if not
+  if (this.party.length < 6) {            
+    this.party.push(randomPokemon)          
     console.log(`Wow! You have found a wild ${randomPokemon.name}. Check your party.`)
   }
-  else {
-    this.collection.push(randomPokemon)      // Add to collection if so
+
+  // This will push the Pokemon to collection if party is full
+  else { 
+    this.collection.push(randomPokemon)      
     console.log(`Wow! You have found a wild ${randomPokemon.name}. Check your collection.`)
   }
 }
@@ -190,6 +194,7 @@ game.evolveStarterPokemon = function(){
   // This looks at each Pokemon in the party
   for (let x = 0; x < this.party.length; x++) {                                  
     const monster = this.party[x]
+
     // This checks if the Pokemon is a starterPokemon, which one is it, and replaces it with the corresponding starterNextEvolve
     if (pokemonEvolutions.starterPokemon.includes(monster)) {                      
       for (let i = 0; i < pokemonEvolutions.starterPokemon.length; i++) {                      
@@ -464,19 +469,18 @@ Solve Exercise 19 here:
 */
 
 // NOTE: I updated this method in Exercise 20.
-// This function takes a pokemon object and checks if pokeballs are available
 game.catchPokemon = function(pokemonObj) {
   if (this.items[1].quantity > 0) {
-    this.items[1].quantity--            // Decrement a pokeball if so
+    this.items[1].quantity--            
     if (this.party.length < 6) { 
-      this.party.push(pokemonObj)       // Push to party if less than 6
+      this.party.push(pokemonObj)      
     }
     else {
-      this.collection.push(pokemonObj)  // Else push to collection
+      this.collection.push(pokemonObj)  
     }
   }
   else {
-    console.log(`You do not have enough pokeballs to catch this Pokemon.`)  // If not enough pokeballs, show message
+    console.log(`You do not have enough pokeballs to catch this Pokemon.`)  
   }
 }
 
@@ -514,24 +518,29 @@ game.catchPokemon = function(nameOfPokemon) {
 
    // Check if realPokemon has returned something
   if (realPokemon !== undefined) {
-    if (pokeballItemSlot.quantity > 0) {         // If pokeballs is greater than 0
-      pokeballItemSlot.quantity--                // Decrement a pokeball from items
+    // If pokeballs is greater than 0, decrement a pokeball from items
+    if (pokeballItemSlot.quantity > 0) {         
+      pokeballItemSlot.quantity--             
       console.log(`You threw a Pokeball. You have ${pokeballItemSlot.quantity} Pokeballs remaining.`)
-      if (this.party.length < 6) {               // Check if the party is full. If not, then add to party. Else, add to collection
+      // Check if the party is full. If not, add to party. 
+      if (this.party.length < 6) {               
         this.party.push(realPokemon)
         console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} is now in your party.`)
       }
+      // Else, add to collection
       else {
         this.collection.push(realPokemon)
         console.log(`You have captured ${realPokemon.name}. ${realPokemon.name} has been added to your collection.`)
       }
     }
+    // Print this if pokeballs is less than or equals 0
     else { 
-      console.log('You are out of Pokeballs.')       // Print this if pokeballs is less than or equals 0
+      console.log('You are out of Pokeballs.')      
     }
   }
+  // Print this if no match for the pokemon is found
   else {
-    console.log('This Pokemon does not exist. Please try again.')      // Print this if no match for the pokemon is found
+    console.log('This Pokemon does not exist. Please try again.')      
   }
 }
 
@@ -580,11 +589,14 @@ Solve Exercise 21 here:
 // This object will hold the new types and their matching pokemon objects
 const typeCollector = {}; 
 
-pokemon.forEach((monster) => {                         // For each monster in Pokemon
-  if (monster.type in typeCollector === false) {       // If the monster's type is not in typeCollector
-    typeCollector[monster.type] = [];                   // Create an array property with the type as the key name 
+// For each monster in Pokemon,
+pokemon.forEach((monster) => {             
+  // If the Pokemon's type is not already in typeCollector, create a new array property with the type as the key name    
+  if (monster.type in typeCollector === false) {       
+    typeCollector[monster.type] = [];                   
   }
-  typeCollector[monster.type].push(monster)             // Add this monster to a type that matches
+  // Add this monster to a type that matches
+  typeCollector[monster.type].push(monster)             
 })
 
 console.log('----------EXERCISE 21 RESULTS ----------')
