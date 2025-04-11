@@ -362,10 +362,10 @@ Solve Exercise 13 here:
 game.gymStatus = function() {
   const gymTally = {completed: 0, incomplete: 0}
     this.gyms.forEach(location => {
-      if (location.completed === true) {
+      if (location.completed) {
           gymTally.completed++
       }
-      else if (location.completed === false) {
+      else if (!location.completed) {
           gymTally.incomplete++
       }
   })
