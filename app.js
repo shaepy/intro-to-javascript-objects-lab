@@ -167,7 +167,7 @@ Solve Exercise 7 here:
 console.log('-------------------- EXERCISE 7 RESULTS --------------------')
 
 // This object holds starter Pokemon and their paired evolutions
-let pokemonEvolutions = {
+const pokemonEvolutions = {
   starterBaseForm: [],
   starterFirstEvolution: [],
   starterSecondEvolution: []
