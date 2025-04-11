@@ -42,7 +42,7 @@ later methods have already been executed.
 // console.log('Exercise 1: ', pokemon[58].name)
 
 // Exercise 2
-console.log('---------- EXERCISE 2 RESULTS ----------')
+console.log('--------------------  EXERCISE 2 RESULTS --------------------')
 console.log('Game Menu: ', game)
 
 /*
@@ -72,7 +72,7 @@ game.changeDifficulty = function(mode) {
   }
 }
 
-console.log('---------- XERCISE 3 RESULTS ----------')
+console.log('-------------------- EXERCISE 3 RESULTS --------------------')
 game.changeDifficulty('easy')
 game.changeDifficulty('hARD')
 game.changeDifficulty('sds')
@@ -90,7 +90,7 @@ Solve Exercise 4 here:
 // I choose Pikachu using .push()
 game.party.push(pokemon[24])  
 
-console.log('---------- EXERCISE 4 RESULTS ----------')
+console.log('-------------------- EXERCISE 4 RESULTS --------------------')
 console.log(`I choose you, ${pokemon[24].name}!`)
 
 /*
@@ -118,7 +118,7 @@ game.findRandomPokemon = function(){
   }
 }
 
-console.log('---------- EXERCISE 5 RESULTS ----------')
+console.log('-------------------- EXERCISE 5 RESULTS --------------------')
 game.findRandomPokemon();         // Call method for random Pokemon
 game.findRandomPokemon();         // Re-save to reload browser console and select different random Pokemon
 game.findRandomPokemon();
@@ -144,7 +144,7 @@ game.completeLevelsBelow = function(difficultyLevel) {
   })
 }
 
-console.log('---------- EXERCISE 6 RESULTS ----------')
+console.log('-------------------- EXERCISE 6 RESULTS --------------------')
 game.completeLevelsBelow(3);
 
 /*
@@ -164,7 +164,7 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-console.log('---------- EXERCISE 7 RESULTS ----------')
+console.log('-------------------- EXERCISE 7 RESULTS --------------------')
 
 // This object holds starter Pokemon and their paired evolutions
 let pokemonEvolutions = {
@@ -238,7 +238,7 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
-console.log('---------- EXERCISE 8 RESULTS ----------')
+console.log('-------------------- EXERCISE 8 RESULTS --------------------')
 
 // This method will log the name of each Pokemon in the party and its corresponding position.
 game.viewParty = function(){
@@ -257,7 +257,7 @@ Exercise 9
 
 Solve Exercise 9 here:
 */ 
-console.log('---------- EXERCISE 9 RESULTS ----------')
+console.log('-------------------- EXERCISE 9 RESULTS --------------------')
 
 // This method will log all the Pokemons available in the game if the 'starter' property is true.
 game.showStarterPokemon = function(){
@@ -303,7 +303,7 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
-console.log('---------- EXERCISE 11 RESULTS ----------')
+console.log('-------------------- EXERCISE 11 RESULTS --------------------')
 
 game.catchPokemon = function(pokemonObj) {
     // This method checks and returns which index pokeballs is in
@@ -330,7 +330,7 @@ Exercise 12
 Solve Exercise 12 here:
 */
 
-console.log('---------- EXERCISE 12 RESULTS ----------')
+console.log('-------------------- EXERCISE 12 RESULTS --------------------')
 // Calling a previous method and setting the difficultyLevel to 6
 game.completeLevelsBelow(6);
 
@@ -373,7 +373,7 @@ game.gymStatus = function() {
   console.log('Gym Tally: ', gymTally) 
 }
 
-console.log('---------- EXERCISE 13 RESULTS ----------')
+console.log('-------------------- EXERCISE 13 RESULTS --------------------')
 game.gymStatus()
 
 /*
@@ -388,7 +388,7 @@ This method should:
 Solve Exercise 14 here:
 */
 
-console.log('---------- EXERCISE 14 RESULTS ----------')
+console.log('-------------------- EXERCISE 14 RESULTS --------------------')
 
 // This method counts the number of Pokemon in the party and returns that value
 game.partyCount = function() {
@@ -408,7 +408,7 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
-console.log('---------- EXERCISE 15 RESULTS ----------')
+console.log('-------------------- EXERCISE 15 RESULTS --------------------')
 // Calling a previous method and setting the difficultyLevel to 8
 game.completeLevelsBelow(8);
 console.log('Gyms: ', game.gyms)
@@ -421,7 +421,7 @@ Exercise 16
 Solve Exercise 16 here:
 */
 
-console.log('---------- EXERCISE 16 RESULTS ----------')
+console.log('-------------------- EXERCISE 16 RESULTS --------------------')
 console.log('Game Menu: ', game)
 
 /*
@@ -476,7 +476,7 @@ game.catchPokemon = function(pokemonObj) {
     }
 }
 
-console.log('---------- EXERCISE 18 RESULTS ----------')
+console.log('-------------------- EXERCISE 18 RESULTS --------------------')
 game.catchPokemon(pokemon[129])
 game.viewParty()
 console.log('Inventory: ', game.items)
@@ -516,7 +516,7 @@ game.catchPokemon = function(pokemonObj) {
   }
 }
 
-console.log('---------- EXERCISE 19 RESULTS ----------')
+console.log('-------------------- EXERCISE 19 RESULTS --------------------')
 game.catchPokemon(pokemon[11])
 console.log('Collection: ', game.collection)
 console.log('Inventory: ', game.items)
@@ -566,7 +566,7 @@ game.catchPokemon = function(name) {
   }
 }
 
-console.log('---------- EXERCISE 20 RESULTS ----------')
+console.log('-------------------- EXERCISE 20 RESULTS --------------------')
 // Throw until you're out of pokeballs!
 game.catchPokemon('ocaptainmycaptaIn')
 game.catchPokemon('SNORLAX')
@@ -622,7 +622,7 @@ pokemon.forEach((monster) => {
   typeCollector[monster.type].push(monster)             
 })
 
-console.log('---------- EXERCISE 21 RESULTS ----------')
+console.log('-------------------- EXERCISE 21 RESULTS --------------------')
 console.log('Pokédex by Type: ', typeCollector);
 
 
